@@ -52,40 +52,9 @@ export default function Header() {
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         isScrolled 
           ? "bg-white/98 backdrop-blur-md py-3 shadow-[0_2px_12px_rgba(0,0,0,0.06)] border-b border-slate-200" 
-          : "bg-white py-3.5 border-b border-slate-200/80"
+          : "bg-white py-4 border-b border-slate-200/80"
       }`}
     >
-      {/* Top Utility Ribbon - Financial Times / McKinsey Editorial Style */}
-      <div className={`${isScrolled ? "hidden" : "hidden lg:block"} border-b border-slate-100 pb-2.5 mb-3 px-6 sm:px-8 max-w-[1700px] mx-auto transition-all`}>
-        <div className="flex justify-between items-center text-[11px] font-sans tracking-wide text-slate-600">
-          <div className="flex items-center space-x-4">
-            <span className="inline-flex items-center text-[#1e60b5] font-semibold tracking-wider font-mono text-[10px] uppercase">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#1e60b5] mr-2"></span>
-              ESTABLISHED 1976 &bull; 50-YEAR HERITAGE
-            </span>
-            <span className="text-slate-300">|</span>
-            <span className="text-slate-700 font-medium">
-              2026 Executive Monograph: <span className="text-slate-900 font-semibold">Autonomous Enterprise Control Planes & Sovereign AI</span>
-            </span>
-            <Link 
-              href="/insights/enterprise-agentic-ai-blueprint-2026" 
-              className="text-[#1e60b5] hover:text-[#0a1128] transition-colors flex items-center font-semibold underline underline-offset-4"
-            >
-              Access Dossier <ArrowRight className="w-3 h-3 ml-1" />
-            </Link>
-          </div>
-          <div className="flex items-center space-x-6 text-slate-500 text-[11px]">
-            <span className="flex items-center">
-              <Globe className="w-3.5 h-3.5 mr-1.5 text-slate-400" /> 
-              GLOBAL HUBS: NEW YORK &bull; LONDON &bull; ZURICH &bull; SINGAPORE &bull; PUNE
-            </span>
-            <span className="text-slate-300">|</span>
-            <Link href="/contact" className="hover:text-slate-900 transition-colors font-medium">Client Advisory Desk</Link>
-            <Link href="/contact" className="hover:text-slate-900 transition-colors text-slate-800 font-semibold">Fiduciary Engagement</Link>
-          </div>
-        </div>
-      </div>
-
       <div className="max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           

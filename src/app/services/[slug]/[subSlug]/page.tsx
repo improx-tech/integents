@@ -41,7 +41,7 @@ export default function SubServicePage({ params }: PageProps) {
   }
 
   return (
-    <div className="bg-white text-slate-900 min-h-screen pt-24 lg:pt-32">
+    <div className="bg-white text-slate-900 min-h-screen pt-20 lg:pt-24">
       
       {/* BREADCRUMB & HERO SECTION */}
       <section className="relative pb-20 border-b border-slate-200 bg-[#fdfdfd]">

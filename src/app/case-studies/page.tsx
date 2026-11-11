@@ -4,7 +4,7 @@ import { ArrowRight, TrendingUp, ShieldCheck } from "lucide-react";
 
 export default function CaseStudiesHub() {
   return (
-    <div className="bg-white text-slate-900 min-h-screen pt-28 lg:pt-36">
+    <div className="bg-white text-slate-900 min-h-screen pt-20 lg:pt-24">
       
       {/* SECTION 1: STATELY CASE STUDIES HERO */}
       <section className="relative py-20 lg:py-28 border-b border-slate-200 bg-[#fdfdfd]">

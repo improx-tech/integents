@@ -38,9 +38,6 @@ import {
 } from "@/lib/data";
 
 export default function Home() {
-  // Hero Interactive Telemetry Mode
-  const [heroTab, setHeroTab] = useState<"orchestration" | "capital" | "security">("orchestration");
-
   // Interactive ROI Calculator State
   const [calcIndustry, setCalcIndustry] = useState("Financial Services & Banking");
   const [calcScale, setCalcScale] = useState("$2B - $10B Enterprise");
@@ -87,7 +84,7 @@ export default function Home() {
   };
 
   return (
-    <div className="bg-white text-slate-900 min-h-screen pt-28 lg:pt-36">
+    <div className="bg-white text-slate-900 min-h-screen pt-20 lg:pt-24">
       
       {/* SECTION 1: STATELY EDITORIAL HERO WITH SPLIT ARCHITECTURAL SPREAD */}
       <section className="relative pt-8 pb-20 lg:pt-14 lg:pb-28 border-b border-slate-200 bg-[#fdfdfd]">
@@ -151,165 +148,72 @@ export default function Home() {
 
             </div>
 
-            {/* Right Column: Architectural Photography & Live Telemetry Monograph (5 Cols) */}
+            {/* Right Column: Prestigious Boardroom Photographic Spread (5 Cols) */}
             <div className="lg:col-span-5 relative">
-              <div className="bg-white rounded-sm border border-slate-200 p-6 sm:p-7 shadow-[0_8px_30px_rgb(0,0,0,0.06)] relative overflow-hidden">
+              <div className="bg-white rounded-xs border border-slate-200 p-3 sm:p-4 shadow-[0_12px_40px_rgb(0,0,0,0.08)] relative">
                 
-                {/* Header Matrix Tabs */}
-                <div className="flex items-center justify-between pb-3.5 border-b border-slate-200 mb-5">
-                  <div className="flex items-center space-x-2">
-                    <span className="w-2 h-2 rounded-full bg-[#1e60b5]"></span>
-                    <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#0a1128]">
-                      Enterprise Control Plane
+                {/* Editorial Photography Frame */}
+                <div className="editorial-photo-frame rounded-xs aspect-[16/11] relative overflow-hidden">
+                  <img 
+                    src="/hero-boardroom.jpg" 
+                    alt="Improx Integents Senior Managing Partners in Executive Boardroom Advisory"
+                    className="w-full h-full object-cover" 
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/85 via-[#0a1128]/15 to-transparent"></div>
+                  
+                  {/* Top Floating Badge */}
+                  <div className="absolute top-3.5 left-3.5 bg-white/95 backdrop-blur-md px-3 py-1 rounded-xs border border-slate-200 shadow-sm flex items-center space-x-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#1e60b5]"></span>
+                    <span className="text-[10px] font-mono text-slate-900 font-bold uppercase tracking-wider">
+                      SENIOR MANAGING PARTNERS &bull; NEW YORK &bull; LONDON
                     </span>
                   </div>
-                  <span className="heritage-badge text-[10px] py-0.5 px-2">
-                    SOVEREIGN MESH
-                  </span>
+
+                  {/* Bottom Photo Caption */}
+                  <div className="absolute bottom-3 left-3.5 right-3.5 flex justify-between items-end text-white">
+                    <div>
+                      <div className="text-xs font-serif font-bold text-white tracking-wide">
+                        Fiduciary Boardroom Review &bull; Autonomous Control Plane Deployment
+                      </div>
+                      <div className="text-[10px] font-mono text-slate-300 mt-0.5">
+                        Elena Rostova (Global Managing Partner) & Dr. Marcus Vance (Head of AI Practice)
+                      </div>
+                    </div>
+                    <span className="text-[10px] font-mono text-emerald-300 bg-emerald-950/70 border border-emerald-500/40 px-2 py-0.5 rounded-xs font-semibold whitespace-nowrap hidden sm:inline-block">
+                      AUDITED 2026
+                    </span>
+                  </div>
                 </div>
 
-                {/* Sub Tab Switcher */}
-                <div className="grid grid-cols-3 gap-1.5 mb-5 p-1 bg-slate-100 rounded-xs">
-                  <button
-                    onClick={() => setHeroTab("orchestration")}
-                    className={`py-1.5 text-[10px] font-mono uppercase tracking-wider rounded-xs transition-all ${
-                      heroTab === "orchestration" 
-                        ? "bg-white text-[#0a1128] font-bold shadow-xs border border-slate-200" 
-                        : "text-slate-600 hover:text-slate-900"
-                    }`}
-                  >
-                    Orchestration
-                  </button>
-                  <button
-                    onClick={() => setHeroTab("capital")}
-                    className={`py-1.5 text-[10px] font-mono uppercase tracking-wider rounded-xs transition-all ${
-                      heroTab === "capital" 
-                        ? "bg-white text-[#0a1128] font-bold shadow-xs border border-slate-200" 
-                        : "text-slate-600 hover:text-slate-900"
-                    }`}
-                  >
-                    Capital Value
-                  </button>
-                  <button
-                    onClick={() => setHeroTab("security")}
-                    className={`py-1.5 text-[10px] font-mono uppercase tracking-wider rounded-xs transition-all ${
-                      heroTab === "security" 
-                        ? "bg-white text-[#0a1128] font-bold shadow-xs border border-slate-200" 
-                        : "text-slate-600 hover:text-slate-900"
-                    }`}
-                  >
-                    Zero-Trust
-                  </button>
-                </div>
-
-                {/* Tab 1: Agentic Orchestration Mesh */}
-                {heroTab === "orchestration" && (
-                  <motion.div 
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="space-y-4"
-                  >
-                    <div className="editorial-photo-frame rounded-xs aspect-[16/10] relative">
-                      <img 
-                        src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600&auto=format&fit=crop" 
-                        alt="Global Financial Centre & Architecture"
-                        className="w-full h-full object-cover" 
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/85 via-[#0a1128]/20 to-transparent"></div>
-                      <div className="absolute bottom-3 left-3 right-3 flex justify-between items-center text-[10px] font-mono text-white">
-                        <span>FIGURE 1.1 &bull; GLOBAL CONTROL PLANE ARCHITECTURE</span>
-                        <span className="text-emerald-300 font-semibold">99.999% VERIFIED</span>
-                      </div>
+                {/* Stately Financial Telemetry Card Beneath Image */}
+                <div className="pt-3.5 space-y-2.5">
+                  <div className="grid grid-cols-3 gap-2 text-center">
+                    <div className="bg-[#fafaf9] p-2.5 rounded-xs border border-slate-200">
+                      <div className="text-base font-serif font-bold text-[#0a1128]">$14.2B+</div>
+                      <div className="text-[9px] font-mono text-slate-500 uppercase">Capital Value</div>
                     </div>
-
-                    <div className="space-y-2 text-xs font-mono">
-                      <div className="flex justify-between p-2.5 bg-slate-50 rounded-xs border border-slate-200">
-                        <span className="text-slate-600">Enterprise ERP & Core Ledger Sync:</span>
-                        <span className="text-slate-900 font-bold">&lt; 12ms Deterministic</span>
-                      </div>
-                      <div className="flex justify-between p-2.5 bg-slate-50 rounded-xs border border-slate-200">
-                        <span className="text-slate-600">Autonomous Workflow Agents:</span>
-                        <span className="text-[#1e60b5] font-bold">24 Nodes Active &bull; Zero Drift</span>
-                      </div>
+                    <div className="bg-[#fafaf9] p-2.5 rounded-xs border border-slate-200">
+                      <div className="text-base font-serif font-bold text-[#1e60b5]">100%</div>
+                      <div className="text-[9px] font-mono text-slate-500 uppercase">Client IP Ringfence</div>
                     </div>
-                  </motion.div>
-                )}
-
-                {/* Tab 2: Dynamic Capital Value */}
-                {heroTab === "capital" && (
-                  <motion.div 
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="space-y-4"
-                  >
-                    <div className="editorial-photo-frame rounded-xs aspect-[16/10] relative">
-                      <img 
-                        src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop" 
-                        alt="Executive Boardroom Capital Allocation"
-                        className="w-full h-full object-cover" 
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/85 via-[#0a1128]/20 to-transparent"></div>
-                      <div className="absolute bottom-3 left-3 right-3 flex justify-between items-center text-[10px] font-mono text-white">
-                        <span>FIGURE 1.2 &bull; FIDUCIARY TSR ACCRETION MODEL</span>
-                        <span className="text-emerald-300 font-semibold">AUDITED OUTCOMES</span>
-                      </div>
+                    <div className="bg-[#fafaf9] p-2.5 rounded-xs border border-slate-200">
+                      <div className="text-base font-serif font-bold text-slate-900">Zero</div>
+                      <div className="text-[9px] font-mono text-slate-500 uppercase">Speculative Overhead</div>
                     </div>
+                  </div>
 
-                    <div className="space-y-2 text-xs font-mono">
-                      <div className="flex justify-between p-2.5 bg-slate-50 rounded-xs border border-slate-200">
-                        <span className="text-slate-600">Working Capital Released:</span>
-                        <span className="text-slate-900 font-bold">$340M Audited EBITDA</span>
-                      </div>
-                      <div className="flex justify-between p-2.5 bg-slate-50 rounded-xs border border-slate-200">
-                        <span className="text-slate-600">Payback Horizon:</span>
-                        <span className="text-[#1e60b5] font-bold">Under 90 Days</span>
-                      </div>
+                  {/* Managing Partner Quote */}
+                  <div className="p-3 bg-slate-50 rounded-xs border border-slate-200 text-xs">
+                    <p className="text-slate-700 italic font-serif leading-relaxed">
+                      &ldquo;We don&apos;t produce slide decks that stall in committee. We engineer sovereign control planes that compound enterprise balance sheet value from Day 1.&rdquo;
+                    </p>
+                    <div className="flex items-center justify-between mt-2 pt-2 border-t border-slate-200 text-[10px] font-mono text-slate-500">
+                      <span>Elena Rostova &bull; Global Managing Partner</span>
+                      <Link href="/about" className="text-[#1e60b5] font-semibold hover:underline">
+                        Firm Leadership &rarr;
+                      </Link>
                     </div>
-                  </motion.div>
-                )}
-
-                {/* Tab 3: Zero-Trust Security Mesh */}
-                {heroTab === "security" && (
-                  <motion.div 
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="space-y-4"
-                  >
-                    <div className="editorial-photo-frame rounded-xs aspect-[16/10] relative">
-                      <img 
-                        src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1600&auto=format&fit=crop" 
-                        alt="Institutional Governance Security"
-                        className="w-full h-full object-cover" 
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/85 via-[#0a1128]/20 to-transparent"></div>
-                      <div className="absolute bottom-3 left-3 right-3 flex justify-between items-center text-[10px] font-mono text-white">
-                        <span>FIGURE 1.3 &bull; SOVEREIGN ZERO-TRUST ENCLAVE</span>
-                        <span className="text-emerald-300 font-semibold">SOC 2 TYPE II</span>
-                      </div>
-                    </div>
-
-                    <div className="space-y-2 text-xs font-mono">
-                      <div className="flex justify-between p-2.5 bg-slate-50 rounded-xs border border-slate-200">
-                        <span className="text-slate-600">Client IP Assignment:</span>
-                        <span className="text-slate-900 font-bold">100% Exclusive Ringfence</span>
-                      </div>
-                      <div className="flex justify-between p-2.5 bg-slate-50 rounded-xs border border-slate-200">
-                        <span className="text-slate-600">Audit Trail:</span>
-                        <span className="text-[#1e60b5] font-bold">Cryptographically Immutable</span>
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-
-                {/* Bottom Practice Tag */}
-                <div className="pt-3.5 mt-3.5 border-t border-slate-200 flex items-center justify-between text-[11px] font-mono">
-                  <span className="text-slate-500">Practice Lead: Elena Rostova</span>
-                  <Link href="/services/strategy-consulting" className="text-[#1e60b5] font-semibold hover:underline">
-                    View Strategy Practice &rarr;
-                  </Link>
+                  </div>
                 </div>
 
               </div>
