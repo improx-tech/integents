@@ -31,9 +31,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth bg-[#080b11] text-slate-100 selection:bg-[#1e60b5] selection:text-white">
+    <html lang="en" className="scroll-smooth bg-white text-slate-900 selection:bg-[#1e60b5] selection:text-white">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col bg-[#080b11] text-slate-100 font-sans`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col bg-white text-slate-900 font-sans`}
       >
         <Header />
         <main className="flex-grow">
