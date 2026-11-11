@@ -61,7 +61,7 @@ export default function AboutPage() {
             <div className="lg:col-span-6">
               <div className="editorial-photo-frame rounded-xs shadow-md aspect-[4/3] relative">
                 <img 
-                  src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1600&auto=format&fit=crop" 
+                  src="/practice-strategy.jpg" 
                   alt="Improx Integents Boardroom Advisory"
                   className="w-full h-full object-cover" 
                 />
