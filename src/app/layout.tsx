@@ -15,8 +15,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Improx Integents | Enterprise Business Consulting",
-  description: "Strategy. Innovation. Transformation. Business Consulting for Modern Enterprises.",
+  title: "Improx Integents | Global Enterprise Management Consulting & Digital Intelligence",
+  description: "Senior Partner-led business advisory and production engineering. Strategy & Transformation, Agentic AI Control Planes, Enterprise Operations, and Industry 4.0 for Global Market Leaders.",
+  keywords: ["Management Consulting", "Enterprise AI", "Agentic Systems", "Supply Chain Modernization", "CFO Advisory", "Digital Transformation", "Improx Ecosystem"],
+  icons: {
+    icon: "/improx-logo.png",
+    shortcut: "/improx-logo.png",
+    apple: "/improx-logo.png",
+  },
 };
 
 export default function RootLayout({
@@ -25,9 +31,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth bg-[#080b11] text-slate-100 selection:bg-[#1e60b5] selection:text-white">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col bg-slate-950 text-slate-100`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col bg-[#080b11] text-slate-100 font-sans`}
       >
         <Header />
         <main className="flex-grow">

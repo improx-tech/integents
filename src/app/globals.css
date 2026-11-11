@@ -1,149 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #090d16;
-  --foreground: #f3f4f6;
-  --primary: #3b82f6;
-  --primary-glow: #6366f1;
-  --accent-gold: #f59e0b;
-  --accent-cyan: #06b6d4;
-  --card-bg: #111827;
-  --card-border: rgba(255, 255, 255, 0.08);
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --improx-blue: #1e60b5;
+  --improx-navy: #0a1128;
+  --improx-slate: #1e293b;
+  --paper-bg: #f8fafc;
+  --card-border: #e2e8f0;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-primary: var(--primary);
-  --color-card: var(--card-bg);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-blue: var(--improx-blue);
+  --color-navy: var(--improx-navy);
+  --font-sans: "Plus Jakarta Sans", var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-serif: "Playfair Display", "Cormorant Garamond", Georgia, serif;
+  --font-display: "Cinzel", "Playfair Display", Georgia, serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
 
 body {
-  background-color: #090d16;
-  color: #f3f4f6;
-  font-family: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: #ffffff;
+  color: #0f172a;
+  font-family: var(--font-sans);
   overflow-x: hidden;
-  @apply antialiased;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #090d16;
+  background: #f1f5f9;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1f2937;
-  border-radius: 4px;
+  background: #cbd5e1;
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #374151;
+  background: #1e60b5;
 }
 
-/* Utility Animations & Aesthetics */
-@layer utilities {
-  .glass-header {
-    background: rgba(9, 13, 22, 0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  }
+/* Selection Color */
+::selection {
+  background-color: #1e60b5;
+  color: #ffffff;
+}
 
-  .glass-card {
-    background: rgba(17, 24, 39, 0.7);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
-  }
+/* Typography Utilities */
+.font-display {
+  font-family: "Cinzel", "Playfair Display", Georgia, serif;
+}
 
-  .glass-card-hover {
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .glass-card-hover:hover {
-    transform: translateY(-4px);
-    border-color: rgba(99, 102, 241, 0.4);
-    box-shadow: 0 25px 50px -12px rgba(99, 102, 241, 0.25);
-  }
+.font-serif {
+  font-family: "Playfair Display", "Cormorant Garamond", Georgia, serif;
+}
 
-  .gradient-text-hero {
-    background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 40%, #60a5fa 70%, #c084fc 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
+.font-sans {
+  font-family: "Plus Jakarta Sans", var(--font-geist-sans), sans-serif;
+}
 
-  .gradient-text-gold {
-    background: linear-gradient(135deg, #fef08a 0%, #f59e0b 50%, #d97706 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
+/* Heritage Headings */
+.editorial-title {
+  font-family: "Playfair Display", "Cormorant Garamond", Georgia, serif;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
 
-  .gradient-text-cyan {
-    background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
+/* Buttons: Heritage Institution Quality */
+.btn-heritage-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0a1128;
+  color: #ffffff;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.875rem 2rem;
+  border-radius: 2px;
+  border: 1px solid #0a1128;
+  transition: all 0.25s ease-in-out;
+}
+.btn-heritage-primary:hover {
+  background-color: #1e60b5;
+  border-color: #1e60b5;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px -4px rgba(10, 17, 40, 0.25);
+}
 
-  .ambient-glow-blue {
-    position: absolute;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(99, 102, 241, 0.05) 50%, transparent 70%);
-    filter: blur(60px);
-    pointer-events: none;
-  }
+.btn-heritage-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: #0a1128;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.875rem 2rem;
+  border-radius: 2px;
+  border: 1px solid #cbd5e1;
+  transition: all 0.25s ease-in-out;
+}
+.btn-heritage-secondary:hover {
+  background-color: #f8fafc;
+  border-color: #0a1128;
+  color: #0a1128;
+  transform: translateY(-1px);
+}
 
-  .ambient-glow-purple {
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(168, 85, 247, 0.12) 0%, rgba(99, 102, 241, 0.03) 50%, transparent 70%);
-    filter: blur(80px);
-    pointer-events: none;
-  }
+.btn-heritage-blue {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1e60b5;
+  color: #ffffff;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.875rem 2rem;
+  border-radius: 2px;
+  border: 1px solid #1e60b5;
+  transition: all 0.25s ease-in-out;
+}
+.btn-heritage-blue:hover {
+  background-color: #154a8f;
+  border-color: #154a8f;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px -4px rgba(30, 96, 181, 0.35);
+}
 
-  .hero-grid-pattern {
-    background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-    background-size: 32px 32px;
-  }
+/* Heritage Badges */
+.heritage-badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 0.35rem 0.85rem;
+  background-color: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #334155;
+  border-radius: 2px;
+}
 
-  .badge-tag {
-    background: rgba(99, 102, 241, 0.1);
-    border: 1px solid rgba(99, 102, 241, 0.3);
-    color: #a5b4fc;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: 0.25rem 0.75rem;
-    border-radius: 9999px;
-  }
+.heritage-badge-blue {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 0.35rem 0.85rem;
+  background-color: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1e40af;
+  border-radius: 2px;
+}
 
-  .btn-primary-gradient {
-    background: linear-gradient(135deg, #2563eb 0%, #4f46e5 50%, #7c3aed 100%);
-    color: #ffffff;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    box-shadow: 0 10px 25px -5px rgba(7f, 70, 229, 0.4);
-  }
-  .btn-primary-gradient:hover {
-    box-shadow: 0 15px 35px -5px rgba(124, 58, 237, 0.6);
-    transform: translateY(-2px);
-  }
+/* Architectural Hairlines */
+.border-hairline {
+  border-color: #e2e8f0;
+}
 
-  .btn-secondary-dark {
-    background: rgba(31, 41, 55, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    color: #f3f4f6;
-    font-weight: 600;
-    transition: all 0.3s ease;
-  }
-  .btn-secondary-dark:hover {
-    background: rgba(55, 65, 81, 0.9);
-    border-color: rgba(255, 255, 255, 0.3);
-    transform: translateY(-2px);
-  }
+/* Editorial Frame */
+.editorial-photo-frame {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+}
+.editorial-photo-frame img {
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.editorial-photo-frame:hover img {
+  transform: scale(1.03);
+}
+
+/* Dropcap for Long Form Monographs */
+.dropcap::first-letter {
+  float: left;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 3.5rem;
+  line-height: 0.85;
+  padding-right: 0.75rem;
+  padding-top: 0.25rem;
+  color: #0a1128;
+  font-weight: 700;
 }

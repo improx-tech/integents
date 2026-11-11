@@ -1,67 +1,84 @@
 import { FEATURED_CASE_STUDIES } from "@/lib/data";
 import Link from "next/link";
-import { ArrowRight, Briefcase, ChevronRight, TrendingUp } from "lucide-react";
+import { ArrowRight, TrendingUp, ShieldCheck } from "lucide-react";
 
 export default function CaseStudiesHub() {
   return (
-    <div className="bg-slate-950 text-slate-100 min-h-screen pt-28">
-      {/* Hero Section */}
-      <section className="relative py-20 lg:py-28 border-b border-slate-800/80 overflow-hidden text-center">
-        <div className="ambient-glow-blue top-[-100px] left-[-100px]"></div>
-        <div className="ambient-glow-purple top-[50px] right-[-100px]"></div>
-
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-4">
-          <span className="badge-tag">Quantified Business Impact</span>
-          <h1 className="text-5xl sm:text-6xl font-extrabold text-white tracking-tight leading-tight">
-            Enterprise Client <br />
-            <span className="gradient-text-hero">Transformation Case Studies</span>
-          </h1>
-          <p className="text-lg text-slate-300">
-            Real-world proof of how Improx Integents partners with global market leaders to engineer high-margin growth, deploy agentic AI control planes, and optimize supply networks.
-          </p>
+    <div className="bg-white text-slate-900 min-h-screen pt-28 lg:pt-36">
+      
+      {/* SECTION 1: STATELY CASE STUDIES HERO */}
+      <section className="relative py-20 lg:py-28 border-b border-slate-200 bg-[#fdfdfd]">
+        <div className="max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl space-y-4">
+            <span className="heritage-badge text-[10px]">Empirical Value Audits</span>
+            <h1 className="text-4xl sm:text-6xl font-serif font-bold text-[#0a1128] tracking-tight leading-[1.08]">
+              Audited Enterprise <br />
+              <span className="italic font-serif text-[#1e60b5] font-normal">Transformation Case Dossiers.</span>
+            </h1>
+            <p className="text-base sm:text-lg text-slate-600 font-light leading-relaxed max-w-2xl">
+              Audited case studies demonstrating how Improx Integents partners with global market leaders to engineer high-margin growth, deploy autonomous agentic AI control planes, and decouple complex supply chains.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* Case Studies List */}
-      <section className="py-24">
+      {/* SECTION 2: CASE STUDIES LIST */}
+      <section className="py-24 border-b border-slate-200 bg-[#f8fafc]">
         <div className="max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {FEATURED_CASE_STUDIES.map((study) => (
-              <div key={study.slug} className="glass-card glass-card-hover rounded-3xl overflow-hidden flex flex-col justify-between border border-slate-800">
+              <div 
+                key={study.slug} 
+                className="bg-white rounded-xs overflow-hidden border border-slate-200 flex flex-col justify-between shadow-xs hover:shadow-md transition-all duration-200 group"
+              >
                 <div>
-                  <div className="h-56 relative overflow-hidden bg-slate-900">
+                  <div className="editorial-photo-frame aspect-[16/10] relative">
                     <img 
                       src={study.image} 
                       alt={study.title} 
                       className="w-full h-full object-cover"
                     />
-                    <div className="absolute top-4 left-4 bg-slate-950/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-indigo-400 border border-slate-800">
-                      {study.industry}
+                    <div className="absolute top-3 left-3">
+                      <span className="heritage-badge text-[9px] bg-white/95 text-[#0a1128] border-none shadow-xs">
+                        {study.industry}
+                      </span>
                     </div>
                   </div>
 
                   <div className="p-8 space-y-4">
-                    <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">{study.client}</div>
-                    <h2 className="text-2xl font-bold text-white leading-snug">{study.title}</h2>
-                    
-                    <div className="bg-indigo-950/50 border border-indigo-800/40 p-3.5 rounded-xl text-xs font-semibold text-indigo-300">
-                      <div className="flex items-center space-x-1">
-                        <TrendingUp className="w-4 h-4 text-emerald-400 mr-1" />
-                        <span>{study.impact}</span>
-                      </div>
+                    <div className="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-widest">
+                      {study.client}
                     </div>
 
-                    <p className="text-xs text-slate-400 leading-relaxed">{study.summary}</p>
+                    <h2 className="text-xl font-serif font-bold text-[#0a1128] group-hover:text-[#1e60b5] transition-colors leading-snug">
+                      {study.title}
+                    </h2>
+                    
+                    <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-xs text-xs font-mono text-emerald-800 font-semibold flex items-center space-x-2">
+                      <TrendingUp className="w-4 h-4 flex-shrink-0 text-emerald-600" />
+                      <span>{study.impact}</span>
+                    </div>
+
+                    <p className="text-xs text-slate-600 font-light leading-relaxed">
+                      {study.summary}
+                    </p>
+
+                    <div className="flex flex-wrap gap-1.5 pt-2">
+                      {study.tags.map(tag => (
+                        <span key={tag} className="text-[10px] font-mono text-slate-600 bg-slate-100 px-2 py-0.5 rounded-xs border border-slate-200">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
-                <div className="p-8 pt-0">
+                <div className="p-8 pt-0 border-t border-slate-100 mt-4">
                   <Link 
                     href={`/case-studies/${study.slug}`} 
-                    className="btn-primary-gradient w-full py-3.5 rounded-xl font-bold text-xs flex items-center justify-center"
+                    className="btn-heritage-primary w-full py-3 text-xs uppercase tracking-wider font-semibold text-center block"
                   >
-                    <span>Read Executive Case Study</span>
-                    <ArrowRight className="w-4 h-4 ml-2" />
+                    Examine Case Dossier &rarr;
                   </Link>
                 </div>
               </div>
@@ -69,6 +86,26 @@ export default function CaseStudiesHub() {
           </div>
         </div>
       </section>
+
+      {/* SECTION 3: STATELY CTA */}
+      <section className="py-24 bg-[#0a1128] text-white">
+        <div className="max-w-4xl mx-auto px-4 text-center space-y-6">
+          <span className="heritage-badge-blue text-[10px]">Confidential Inquiries</span>
+          <h2 className="text-3xl sm:text-5xl font-serif font-bold text-white tracking-tight">
+            Review Tailored Case Studies for Your Board
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto font-light leading-relaxed">
+            Due to strict mutual non-disclosure agreements, select client case studies and balance sheet audit models are shared exclusively during private C-suite briefing sessions.
+          </p>
+          <div className="pt-2">
+            <Link href="/contact" className="btn-heritage-blue px-8 py-4 text-xs uppercase tracking-wider font-semibold inline-flex items-center space-x-2">
+              <span>Request Private Case Deck</span>
+              <ArrowRight className="w-4 h-4 ml-1" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 }

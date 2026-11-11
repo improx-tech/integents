@@ -1,7 +1,7 @@
 import { FEATURED_INSIGHTS } from "@/lib/data";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ChevronRight, Calendar, Clock, Share2, Globe, MessageCircle, ArrowRight } from "lucide-react";
+import { ChevronRight, Calendar, Clock, Share2, Globe, MessageCircle, ArrowRight, ShieldCheck } from "lucide-react";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -16,71 +16,86 @@ export default async function InsightPage({ params }: PageProps) {
   }
 
   return (
-    <div className="bg-slate-950 text-slate-100 min-h-screen pt-28">
-      {/* Hero Section */}
-      <section className="relative py-20 border-b border-slate-800/80 overflow-hidden text-center">
-        <div className="ambient-glow-blue top-[-100px] left-[-100px]"></div>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-4">
-          <Link href="/insights" className="text-indigo-400 hover:text-indigo-300 font-semibold inline-flex items-center text-xs uppercase tracking-wider mb-2">
-            <ChevronRight className="w-4 h-4 mr-1 rotate-180" /> Back to Insights Hub
+    <div className="bg-white text-slate-900 min-h-screen pt-28 lg:pt-36">
+      
+      {/* SECTION 1: STATELY MONOGRAPH HERO */}
+      <section className="relative py-20 border-b border-slate-200 bg-[#fdfdfd]">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 text-center">
+          <Link 
+            href="/insights" 
+            className="text-xs font-mono uppercase tracking-wider text-[#1e60b5] hover:underline inline-flex items-center mb-2 font-semibold"
+          >
+            <ChevronRight className="w-3.5 h-3.5 mr-1 rotate-180" /> Back to Strategic Monographs
           </Link>
           
-          <div className="badge-tag block w-max mx-auto">{insight.category}</div>
+          <div className="heritage-badge block w-max mx-auto text-[10px]">{insight.category}</div>
           
-          <h1 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight">{insight.title}</h1>
+          <h1 className="text-3xl sm:text-5xl font-serif font-bold text-[#0a1128] tracking-tight leading-[1.12]">
+            {insight.title}
+          </h1>
           
-          <div className="flex items-center justify-center space-x-6 text-xs text-slate-400 font-medium pt-2">
-            <span className="flex items-center"><Calendar className="w-3.5 h-3.5 mr-1" /> {insight.date}</span>
+          <div className="flex items-center justify-center space-x-6 text-xs font-mono text-slate-500 pt-2">
+            <span className="flex items-center"><Calendar className="w-3.5 h-3.5 mr-1 text-[#1e60b5]" /> {insight.date}</span>
             <span>&bull;</span>
-            <span className="flex items-center"><Clock className="w-3.5 h-3.5 mr-1" /> {insight.readTime}</span>
+            <span className="flex items-center"><Clock className="w-3.5 h-3.5 mr-1 text-[#1e60b5]" /> {insight.readTime}</span>
           </div>
         </div>
       </section>
 
-      {/* Main Article Content */}
-      <section className="py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      {/* SECTION 2: ARTICLE BODY */}
+      <section className="py-20 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           
-          <div className="flex items-center justify-between py-4 border-b border-slate-800">
+          {/* Author Header */}
+          <div className="flex items-center justify-between py-4 border-b border-slate-200">
             <div>
-              <p className="font-bold text-white text-sm">{insight.author}</p>
-              <p className="text-xs text-slate-400">Improx Integents Research Practice</p>
+              <p className="font-serif font-bold text-[#0a1128] text-base">{insight.author}</p>
+              <p className="text-xs font-mono text-slate-500">Improx Integents Strategic Practice Research</p>
             </div>
-            <div className="flex space-x-2">
-              <button className="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 transition-colors"><Globe className="w-4 h-4" /></button>
-              <button className="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 transition-colors"><MessageCircle className="w-4 h-4" /></button>
-              <button className="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 transition-colors"><Share2 className="w-4 h-4" /></button>
+            <div className="text-[11px] font-mono text-[#1e60b5] bg-slate-50 px-3 py-1 rounded-xs border border-slate-200 font-bold">
+              PEER-REVIEWED MONOGRAPH
             </div>
           </div>
 
-          <div className="glass-card rounded-3xl p-8 lg:p-12 border border-slate-800 space-y-6">
-            <p className="text-xl font-normal leading-relaxed text-indigo-200 border-l-4 border-indigo-500 pl-6 py-2">
-              {insight.summary}
+          {/* Lead Editorial Photograph Frame */}
+          <div className="editorial-photo-frame rounded-xs aspect-[16/9] shadow-md relative">
+            <img 
+              src={insight.image} 
+              alt={insight.title} 
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          {/* Executive Pullquote */}
+          <div className="bg-[#fafaf9] rounded-xs p-6 sm:p-8 border-l-4 border-l-[#1e60b5] border-t border-r border-b border-slate-200">
+            <div className="text-[10px] font-mono uppercase tracking-widest text-[#1e60b5] mb-2 font-bold">Executive Thesis</div>
+            <p className="text-base sm:text-lg font-serif italic text-[#0a1128] leading-relaxed">
+              &ldquo;{insight.summary}&rdquo;
             </p>
-            
-            <div className="text-slate-300 text-base leading-relaxed space-y-4 pt-4 border-t border-slate-800">
-              <p>
-                In today's volatile macroeconomic environment, enterprise leaders face an operational mandate: transform legacy processes or risk margin compression. As artificial intelligence evolves from passive task assistance into multi-agent operational control planes, forward-thinking organizations are fundamentally restructuring their execution models.
-              </p>
-              <p>
-                Through empirical research across Global 2000 deployments, Improx Integents has codified the reference architecture for secure agentic systems, real-time data governance, and high-velocity capital deployment.
-              </p>
-            </div>
           </div>
 
-          <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 rounded-3xl p-10 border border-slate-800 text-center space-y-4">
-            <h3 className="text-2xl font-bold text-white">Discuss this Benchmark Research</h3>
-            <p className="text-slate-300 text-sm max-w-lg mx-auto">Want to evaluate how these research findings apply directly to your organization's operating model?</p>
-            <div className="pt-2">
-              <Link href="/contact" className="btn-primary-gradient px-8 py-3.5 rounded-xl font-bold text-xs inline-flex items-center">
-                <span>Request Executive Briefing</span>
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Link>
-            </div>
+          {/* Long Form Body Content */}
+          <div className="text-sm sm:text-base text-slate-700 font-light leading-relaxed space-y-6 whitespace-pre-line dropcap">
+            {insight.fullContent}
           </div>
-          
+
+          {/* Bottom Footnote & Next Action */}
+          <div className="pt-10 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="text-xs font-mono text-slate-500">
+              Published by Improx Integents Global Research &bull; All Rights Reserved.
+            </div>
+            <Link 
+              href="/contact" 
+              className="btn-heritage-primary px-6 py-2.5 text-xs uppercase tracking-wider font-semibold inline-flex items-center space-x-2"
+            >
+              <span>Discuss with Practice Lead</span>
+              <ArrowRight className="w-3.5 h-3.5 ml-1" />
+            </Link>
+          </div>
+
         </div>
       </section>
+
     </div>
   );
 }

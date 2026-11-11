@@ -9,6 +9,12 @@ export interface CapabilityCategory {
   slug: string;
   tagline: string;
   iconName: string;
+  code?: string;
+  image?: string;
+  stat?: string;
+  statLabel?: string;
+  leadName?: string;
+  leadRole?: string;
   items: SubServiceItem[];
 }
 
@@ -18,6 +24,12 @@ export const ENTERPRISE_PILLARS: CapabilityCategory[] = [
     slug: "strategy-consulting",
     tagline: "Architecting resilient business models & growth engines for global market dominance.",
     iconName: "Compass",
+    code: "CAP-01",
+    image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1600&auto=format&fit=crop",
+    stat: "$5.8B+",
+    statLabel: "Capital Value Unlocked",
+    leadName: "Elena Rostova",
+    leadRole: "Global Managing Partner",
     items: [
       { title: "Corporate Strategy & Vision", slug: "corporate-strategy", shortDesc: "Long-term positioning & market expansion blueprints." },
       { title: "M&A & Enterprise Restructuring", slug: "mergers-acquisitions", shortDesc: "Post-merger integration & portfolio optimization." },
@@ -32,6 +44,12 @@ export const ENTERPRISE_PILLARS: CapabilityCategory[] = [
     slug: "data-and-ai",
     tagline: "Industrializing agentic AI, predictive analytics & enterprise data platforms.",
     iconName: "BrainCircuit",
+    code: "CAP-02",
+    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1600&auto=format&fit=crop",
+    stat: "500+",
+    statLabel: "Production AI Deployments",
+    leadName: "Dr. Marcus Vance",
+    leadRole: "Global Practice Head, AI",
     items: [
       { title: "Enterprise AI & GenAI Consulting", slug: "artificial-intelligence", shortDesc: "Scaling generative & agentic AI models across core workflows." },
       { title: "Modern Data Architecture", slug: "data-architecture", shortDesc: "Data mesh, lakehouses & real-time streaming infrastructure." },
@@ -46,6 +64,12 @@ export const ENTERPRISE_PILLARS: CapabilityCategory[] = [
     slug: "operations",
     tagline: "Re-engineering core supply chains, procurement & customer service hubs.",
     iconName: "Cpu",
+    code: "CAP-03",
+    image: "https://images.unsplash.com/photo-1586528116311-ad8ed7e66364?q=80&w=1600&auto=format&fit=crop",
+    stat: "38%",
+    statLabel: "Average Margin Expansion",
+    leadName: "Arthur Sterling",
+    leadRole: "Senior Partner, Operations",
     items: [
       { title: "Intelligent Supply Chain", slug: "supply-chain", shortDesc: "Autonomous demand forecasting & resilient global logistics." },
       { title: "Procurement & Sourcing Modernization", slug: "procurement", shortDesc: "Cognitive spend management & vendor ecosystem optimization." },
@@ -59,6 +83,12 @@ export const ENTERPRISE_PILLARS: CapabilityCategory[] = [
     slug: "digital-transformation",
     tagline: "Accelerating legacy migration, hybrid cloud & cyber-resilient engineering.",
     iconName: "Layers",
+    code: "CAP-04",
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1600&auto=format&fit=crop",
+    stat: "4.2x",
+    statLabel: "Deployment Velocity Boost",
+    leadName: "Claire Zhang",
+    leadRole: "Partner, Cloud & Security",
     items: [
       { title: "Hybrid Cloud & Tech Strategy", slug: "cloud-strategy", shortDesc: "Multi-cloud architecture & IT cost optimization." },
       { title: "Enterprise Architecture Modernization", slug: "enterprise-architecture", shortDesc: "Decoupling monoliths into microservices & event-driven APIs." },
@@ -73,6 +103,12 @@ export const ENTERPRISE_PILLARS: CapabilityCategory[] = [
     slug: "industry-x",
     tagline: "Transforming physical asset ecosystems with Industry 4.0 & digital twins.",
     iconName: "Building2",
+    code: "CAP-05",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1600&auto=format&fit=crop",
+    stat: "42%",
+    statLabel: "Unplanned Downtime Cut",
+    leadName: "Henrik Lindqvist",
+    leadRole: "Partner, Industrial IoT",
     items: [
       { title: "Smart Manufacturing & Industry 4.0", slug: "smart-manufacturing", shortDesc: "Connected factory floors & automated robotics integration." },
       { title: "Digital Twin Systems", slug: "digital-twin", shortDesc: "Virtual simulation models for heavy machinery & plants." },
@@ -88,6 +124,8 @@ export const GLOBAL_INDUSTRIES = [
     name: "Financial Services & Banking",
     slug: "financial-services",
     iconName: "Landmark",
+    code: "IND-01",
+    image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?q=80&w=1600&auto=format&fit=crop",
     desc: "AI fraud detection, core banking modernization & algorithmic risk management.",
     metric: "$4.2B+",
     metricLabel: "Capital Value Optimized"
@@ -96,6 +134,8 @@ export const GLOBAL_INDUSTRIES = [
     name: "Healthcare & Life Sciences",
     slug: "healthcare",
     iconName: "Activity",
+    code: "IND-02",
+    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=1600&auto=format&fit=crop",
     desc: "Clinical trial intelligence, genomic data platforms & hospital operational agility.",
     metric: "3.5x",
     metricLabel: "R&D Cycle Acceleration"
@@ -104,6 +144,8 @@ export const GLOBAL_INDUSTRIES = [
     name: "Smart Manufacturing & Automotive",
     slug: "manufacturing",
     iconName: "Factory",
+    code: "IND-03",
+    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1600&auto=format&fit=crop",
     desc: "Industry 4.0 automated plants, EV supply chains & predictive quality control.",
     metric: "42%",
     metricLabel: "Downtime Reduction"
@@ -112,6 +154,8 @@ export const GLOBAL_INDUSTRIES = [
     name: "Retail, Consumer & E-Commerce",
     slug: "retail",
     iconName: "ShoppingBag",
+    code: "IND-04",
+    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1600&auto=format&fit=crop",
     desc: "Hyper-personalized recommendation engines, dynamic pricing & omni-channel logistics.",
     metric: "28%",
     metricLabel: "Margin Improvement"
@@ -120,6 +164,8 @@ export const GLOBAL_INDUSTRIES = [
     name: "Energy, Resources & Utilities",
     slug: "energy",
     iconName: "Zap",
+    code: "IND-05",
+    image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?q=80&w=1600&auto=format&fit=crop",
     desc: "Grid modernization, renewable asset balancing & carbon accounting software.",
     metric: "12M Tons",
     metricLabel: "CO2 Offset Strategy"
@@ -128,6 +174,8 @@ export const GLOBAL_INDUSTRIES = [
     name: "Telecom & High Tech",
     slug: "telecom",
     iconName: "Radio",
+    code: "IND-06",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1600&auto=format&fit=crop",
     desc: "5G network slicing automation, cloud-native OSS/BSS & AI customer care.",
     metric: "99.999%",
     metricLabel: "Uptime SLA Achieved"
