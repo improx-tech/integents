@@ -1,327 +1,717 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, Menu, X, ArrowRight, Search, Globe, Sparkles, Building2, Layers, Cpu, Compass, BrainCircuit } from "lucide-react";
-import { ENTERPRISE_PILLARS, GLOBAL_INDUSTRIES } from "@/lib/data";
+import { 
+  ChevronDown, 
+  Menu, 
+  X, 
+  ArrowRight, 
+  Search,
+  Globe,
+  Compass, 
+  BrainCircuit, 
+  Cpu, 
+  Layers, 
+  Building2,
+  Landmark,
+  Activity,
+  Factory,
+  ShoppingBag,
+  Zap,
+  Radio,
+  BookOpen
+} from "lucide-react";
+import { ENTERPRISE_PILLARS, GLOBAL_INDUSTRIES, FEATURED_INSIGHTS } from "@/lib/data";
 
 export default function Header() {
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState<string | null>(null);
-  const [activePillarIndex, setActivePillarIndex] = useState(0);
+  const [activeDropdown, setActiveDropdown] = useState<"practices" | "industries" | null>(null);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  
+  // Mobile accordion state
+  const [mobilePracticesOpen, setMobilePracticesOpen] = useState(false);
+  const [mobileIndustriesOpen, setMobileIndustriesOpen] = useState(false);
 
+  const headerRef = useRef<HTMLElement>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  // Close menus on route navigation
+  useEffect(() => {
+    setActiveDropdown(null);
+    setMobileMenuOpen(false);
+    setSearchOpen(false);
+  }, [pathname]);
+
+  // Scroll listener for sticky backdrop
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 20);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const renderIcon = (iconName: string) => {
-    switch (iconName) {
-      case "Compass": return <Compass className="w-5 h-5 text-indigo-400" />;
-      case "BrainCircuit": return <BrainCircuit className="w-5 h-5 text-cyan-400" />;
-      case "Cpu": return <Cpu className="w-5 h-5 text-blue-400" />;
-      case "Layers": return <Layers className="w-5 h-5 text-purple-400" />;
-      default: return <Building2 className="w-5 h-5 text-emerald-400" />;
+  // Keyboard shortcut (Cmd+K / Ctrl+K) for search & ESC to close
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        setSearchOpen((prev) => !prev);
+      }
+      if (e.key === "Escape") {
+        setActiveDropdown(null);
+        setSearchOpen(false);
+        setMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  // Focus search input on open
+  useEffect(() => {
+    if (searchOpen) {
+      setTimeout(() => {
+        searchInputRef.current?.focus();
+      }, 100);
     }
-  };
+  }, [searchOpen]);
+
+  // Filter items for search modal
+  const filteredPractices = ENTERPRISE_PILLARS.filter(p => 
+    p.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    p.tagline.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const filteredIndustries = GLOBAL_INDUSTRIES.filter(s => 
+    s.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    s.desc.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const filteredInsights = FEATURED_INSIGHTS.filter(i => 
+    i.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    i.category.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
-    <header 
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? "glass-header py-3" : "bg-slate-950/90 py-5 border-b border-slate-800/40"
-      }`}
-    >
-      {/* Top Utility Announcement Bar */}
-      <div className="hidden lg:block bg-gradient-to-r from-slate-950 via-indigo-950/40 to-slate-950 border-b border-slate-800/40 text-xs py-1.5 px-8">
-        <div className="max-w-[1700px] mx-auto flex justify-between items-center text-slate-400">
-          <div className="flex items-center space-x-3">
-            <span className="badge-tag !py-0.5 !px-2 !text-[10px]">Research Released</span>
-            <span className="text-slate-300 font-medium">Enterprise Agentic AI Control Planes (2026 Strategy Benchmark)</span>
-            <Link href="/insights/enterprise-agentic-ai-blueprint-2026" className="text-indigo-400 hover:text-indigo-300 font-semibold flex items-center">
-              Read Benchmgark <ArrowRight className="w-3 h-3 ml-1" />
+    <>
+      {/* =========================================================================
+          MINIMALIST LUXURY HEADER BAR (MCKINSEY / BCG HERITAGE TIER)
+          ========================================================================= */}
+      <header
+        ref={headerRef}
+        onMouseLeave={() => setActiveDropdown(null)}
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-200 ${
+          isScrolled
+            ? "bg-white/98 backdrop-blur-md py-3 shadow-[0_2px_16px_rgba(0,0,0,0.06)] border-b border-slate-200"
+            : "bg-white py-4 border-b border-slate-200/90"
+        }`}
+      >
+        <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-12">
+          <div className="flex items-center justify-between">
+            
+            {/* -------------------------------------------------------------
+                1. TIMELESS BRAND LOCKUP (Uncluttered, Confident, Pure White)
+                ------------------------------------------------------------- */}
+            <Link 
+              href="/" 
+              className="flex items-center space-x-3.5 group focus:outline-none"
+              onClick={() => setActiveDropdown(null)}
+            >
+              <img
+                src="/improx-logo.png"
+                alt="improX"
+                className="h-7 sm:h-8 w-auto object-contain transition-opacity group-hover:opacity-90"
+              />
+              <div className="h-6 w-[1px] bg-slate-300 hidden sm:block" />
+              <span className="text-lg sm:text-[20px] font-serif font-bold tracking-[0.16em] text-[#0a1128] group-hover:text-[#1e60b5] transition-colors">
+                INTEGENTS
+              </span>
             </Link>
-          </div>
-          <div className="flex items-center space-x-6">
-            <span className="flex items-center text-slate-400"><Globe className="w-3.5 h-3.5 mr-1.5 text-indigo-400" /> Global | North America & EMEA</span>
-            <Link href="/contact" className="hover:text-white transition-colors">Client Portal</Link>
-            <Link href="/contact" className="hover:text-white transition-colors">Contact Partner</Link>
+
+            {/* -------------------------------------------------------------
+                2. CLEAN, SPACIOUS EDITORIAL NAVIGATION
+                ------------------------------------------------------------- */}
+            <nav className="hidden lg:flex items-center space-x-8 xl:space-x-10">
+              
+              {/* Practices Dropdown Trigger */}
+              <div 
+                className="relative"
+                onMouseEnter={() => setActiveDropdown("practices")}
+              >
+                <button
+                  onClick={() => setActiveDropdown(activeDropdown === "practices" ? null : "practices")}
+                  className={`flex items-center space-x-1.5 text-[13px] font-semibold tracking-wide uppercase transition-colors py-2 ${
+                    activeDropdown === "practices" || pathname.startsWith("/services")
+                      ? "text-[#1e60b5]"
+                      : "text-slate-700 hover:text-[#0a1128]"
+                  }`}
+                >
+                  <span>Practices</span>
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeDropdown === "practices" ? "rotate-180 text-[#1e60b5]" : "text-slate-400"}`} />
+                </button>
+              </div>
+
+              {/* Industries Dropdown Trigger */}
+              <div 
+                className="relative"
+                onMouseEnter={() => setActiveDropdown("industries")}
+              >
+                <button
+                  onClick={() => setActiveDropdown(activeDropdown === "industries" ? null : "industries")}
+                  className={`flex items-center space-x-1.5 text-[13px] font-semibold tracking-wide uppercase transition-colors py-2 ${
+                    activeDropdown === "industries" || pathname.startsWith("/industries")
+                      ? "text-[#1e60b5]"
+                      : "text-slate-700 hover:text-[#0a1128]"
+                  }`}
+                >
+                  <span>Industries</span>
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeDropdown === "industries" ? "rotate-180 text-[#1e60b5]" : "text-slate-400"}`} />
+                </button>
+              </div>
+
+              {/* Case Studies */}
+              <Link
+                href="/case-studies"
+                className={`text-[13px] font-semibold tracking-wide uppercase transition-colors py-2 ${
+                  pathname.startsWith("/case-studies")
+                    ? "text-[#1e60b5]"
+                    : "text-slate-700 hover:text-[#0a1128]"
+                }`}
+              >
+                Case Studies
+              </Link>
+
+              {/* Insights */}
+              <Link
+                href="/insights"
+                className={`text-[13px] font-semibold tracking-wide uppercase transition-colors py-2 ${
+                  pathname.startsWith("/insights")
+                    ? "text-[#1e60b5]"
+                    : "text-slate-700 hover:text-[#0a1128]"
+                }`}
+              >
+                Insights
+              </Link>
+
+              {/* About The Firm */}
+              <Link
+                href="/about"
+                className={`text-[13px] font-semibold tracking-wide uppercase transition-colors py-2 ${
+                  pathname === "/about"
+                    ? "text-[#1e60b5]"
+                    : "text-slate-700 hover:text-[#0a1128]"
+                }`}
+              >
+                About
+              </Link>
+
+            </nav>
+
+            {/* -------------------------------------------------------------
+                3. REFINED UTILITIES & PRESTIGE CTA (No Clutter, Pure Restraint)
+                ------------------------------------------------------------- */}
+            <div className="hidden lg:flex items-center space-x-6">
+              
+              {/* Minimal Search Button */}
+              <button
+                onClick={() => setSearchOpen(true)}
+                className="text-slate-500 hover:text-[#0a1128] transition-colors p-1.5 focus:outline-none"
+                aria-label="Search site (Cmd+K)"
+                title="Search (Cmd+K)"
+              >
+                <Search className="w-4 h-4" />
+              </button>
+
+              {/* Primary Briefing CTA */}
+              <Link
+                href="/contact"
+                className="bg-[#0a1128] text-white hover:bg-[#1e60b5] px-5 py-2.5 text-xs font-semibold tracking-[0.08em] uppercase rounded-xs transition-all duration-200 shadow-xs hover:shadow-md flex items-center space-x-1.5"
+              >
+                <span>Schedule Briefing</span>
+                <ArrowRight className="w-3.5 h-3.5 ml-0.5" />
+              </Link>
+
+            </div>
+
+            {/* -------------------------------------------------------------
+                4. MOBILE CONTROLS
+                ------------------------------------------------------------- */}
+            <div className="flex lg:hidden items-center space-x-3">
+              <button
+                onClick={() => setSearchOpen(true)}
+                className="p-2 text-slate-600 hover:text-slate-900 focus:outline-none"
+                aria-label="Search"
+              >
+                <Search className="w-5 h-5" />
+              </button>
+              
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="p-2 text-slate-800 hover:text-black focus:outline-none"
+                aria-label="Toggle navigation menu"
+              >
+                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6 text-slate-800" />}
+              </button>
+            </div>
+
           </div>
         </div>
-      </div>
 
-      <div className="max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
-          
-          {/* Logo Brand */}
-          <Link href="/" className="flex items-center space-x-3 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/20 group-hover:scale-105 transition-transform">
-              <Sparkles className="w-5 h-5 text-white" />
-            </div>
-            <div>
-              <span className="text-xl font-extrabold tracking-tight text-white block leading-none">
-                IMPROX <span className="gradient-text-cyan font-semibold">INTEGENTS</span>
-              </span>
-              <span className="text-[10px] font-semibold tracking-widest text-slate-400 uppercase block mt-1">
-                Enterprise Business Consulting
-              </span>
-            </div>
-          </Link>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-1">
-            <Link href="/" className="px-4 py-2 text-sm font-semibold text-slate-200 hover:text-white transition-colors rounded-lg hover:bg-slate-900/60">
-              Home
-            </Link>
-
-            {/* Capabilities Mega Menu Trigger */}
-            <div 
-              className="relative"
-              onMouseEnter={() => setActiveTab("capabilities")}
-              onMouseLeave={() => setActiveTab(null)}
+        {/* =========================================================================
+            PRACTICES DROPDOWN (EDITORIAL 2-COLUMN ARCHITECTURE)
+            ========================================================================= */}
+        <AnimatePresence>
+          {activeDropdown === "practices" && (
+            <motion.div
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 6 }}
+              transition={{ duration: 0.15 }}
+              className="absolute top-full left-0 w-full bg-white border-b border-slate-200 shadow-[0_20px_50px_rgba(0,0,0,0.12)] z-40"
+              onMouseEnter={() => setActiveDropdown("practices")}
+              onMouseLeave={() => setActiveDropdown(null)}
             >
-              <button className="flex items-center space-x-1.5 px-4 py-2 text-sm font-semibold text-slate-200 hover:text-white transition-colors rounded-lg hover:bg-slate-900/60">
-                <span>Capabilities</span>
-                <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform duration-200 ${activeTab === "capabilities" ? "rotate-180 text-indigo-400" : ""}`} />
-              </button>
-
-              {/* Mega Menu Popup */}
-              <AnimatePresence>
-                {activeTab === "capabilities" && (
-                  <motion.div 
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute top-full left-[-200px] w-[1150px] mt-2 glass-card rounded-2xl p-6 border border-slate-800 shadow-2xl z-50 overflow-hidden"
-                  >
-                    <div className="grid grid-cols-12 gap-6">
-                      
-                      {/* Left Sidebar: 5 Pillars Tabs */}
-                      <div className="col-span-4 bg-slate-950/60 rounded-xl p-3 border border-slate-800/60 space-y-1">
-                        <div className="px-3 py-2 text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-                          Strategic Capability Pillars
-                        </div>
-                        {ENTERPRISE_PILLARS.map((pillar, idx) => (
-                          <button
-                            key={pillar.slug}
-                            onMouseEnter={() => setActivePillarIndex(idx)}
-                            onClick={() => setActivePillarIndex(idx)}
-                            className={`w-full text-left px-4 py-3 rounded-lg flex items-center justify-between transition-all ${
-                              activePillarIndex === idx
-                                ? "bg-gradient-to-r from-indigo-600/30 to-slate-900 border border-indigo-500/40 text-white"
-                                : "text-slate-300 hover:bg-slate-900/80 hover:text-white"
-                            }`}
-                          >
-                            <div className="flex items-center space-x-3">
-                              {renderIcon(pillar.iconName)}
-                              <span className="text-sm font-bold">{pillar.category}</span>
-                            </div>
-                            <ArrowRight className={`w-4 h-4 transition-opacity ${activePillarIndex === idx ? "opacity-100 text-indigo-400" : "opacity-0"}`} />
-                          </button>
-                        ))}
-                      </div>
-
-                      {/* Right Panel: Active Pillar's Sub-services Grid */}
-                      <div className="col-span-8 p-3 flex flex-col justify-between">
-                        <div>
-                          <div className="flex items-center justify-between pb-3 border-b border-slate-800/60 mb-4">
-                            <div>
-                              <h3 className="text-lg font-bold text-white flex items-center space-x-2">
-                                <span>{ENTERPRISE_PILLARS[activePillarIndex].category}</span>
-                              </h3>
-                              <p className="text-xs text-slate-400 mt-1">
-                                {ENTERPRISE_PILLARS[activePillarIndex].tagline}
-                              </p>
-                            </div>
-                            <Link 
-                              href={`/services/${ENTERPRISE_PILLARS[activePillarIndex].slug}`} 
-                              className="text-xs font-semibold text-indigo-400 hover:text-indigo-300 flex items-center bg-indigo-950/40 px-3 py-1.5 rounded-lg border border-indigo-800/40"
-                            >
-                              Pillar Overview <ArrowRight className="w-3.5 h-3.5 ml-1" />
-                            </Link>
-                          </div>
-
-                          <div className="grid grid-cols-2 gap-3">
-                            {ENTERPRISE_PILLARS[activePillarIndex].items.map((subItem) => (
-                              <Link
-                                key={subItem.slug}
-                                href={`/services/${ENTERPRISE_PILLARS[activePillarIndex].slug}/${subItem.slug}`}
-                                className="group/sub bg-slate-900/40 hover:bg-slate-900 border border-slate-800/40 hover:border-indigo-500/40 p-3 rounded-xl transition-all"
-                              >
-                                <div className="text-sm font-bold text-slate-200 group-hover/sub:text-indigo-300 flex items-center justify-between">
-                                  <span>{subItem.title}</span>
-                                  <ArrowRight className="w-3.5 h-3.5 opacity-0 group-hover/sub:opacity-100 text-indigo-400 transition-opacity" />
-                                </div>
-                                <p className="text-xs text-slate-400 mt-1 line-clamp-1">
-                                  {subItem.shortDesc}
-                                </p>
-                              </Link>
-                            ))}
-                          </div>
-                        </div>
-
-                        <div className="pt-4 border-t border-slate-800/40 flex items-center justify-between text-xs text-slate-400 mt-4">
-                          <span>Need tailored C-suite advisory?</span>
-                          <Link href="/contact" className="text-cyan-400 hover:underline font-semibold">
-                            Request Strategic Briefing &rarr;
-                          </Link>
-                        </div>
-                      </div>
-
+              <div className="max-w-[1400px] mx-auto px-6 sm:px-8 py-10">
+                <div className="grid grid-cols-12 gap-10 items-stretch">
+                  
+                  {/* Left Column: 5 Practices Directory (7 Cols) */}
+                  <div className="col-span-7 pr-6 border-r border-slate-200">
+                    <div className="flex items-center justify-between pb-3 border-b border-slate-200 mb-4">
+                      <span className="text-[11px] font-mono uppercase tracking-widest text-slate-500 font-bold">
+                        Strategic Consulting Practices
+                      </span>
+                      <Link
+                        href="/services"
+                        onClick={() => setActiveDropdown(null)}
+                        className="text-xs font-semibold text-[#1e60b5] hover:underline flex items-center"
+                      >
+                        <span>View All Capabilities</span>
+                        <ArrowRight className="w-3.5 h-3.5 ml-1" />
+                      </Link>
                     </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
 
-            {/* Industries Dropdown */}
-            <div 
-              className="relative"
-              onMouseEnter={() => setActiveTab("industries")}
-              onMouseLeave={() => setActiveTab(null)}
-            >
-              <button className="flex items-center space-x-1.5 px-4 py-2 text-sm font-semibold text-slate-200 hover:text-white transition-colors rounded-lg hover:bg-slate-900/60">
-                <span>Industries</span>
-                <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform duration-200 ${activeTab === "industries" ? "rotate-180 text-indigo-400" : ""}`} />
-              </button>
-
-              <AnimatePresence>
-                {activeTab === "industries" && (
-                  <motion.div 
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute top-full left-0 w-[550px] mt-2 glass-card rounded-2xl p-5 border border-slate-800 shadow-2xl z-50"
-                  >
-                    <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">
-                      Industry Sectors
-                    </div>
-                    <div className="grid grid-cols-2 gap-3">
-                      {GLOBAL_INDUSTRIES.map((ind) => (
-                        <Link 
-                          key={ind.slug}
-                          href={`/industries/${ind.slug}`}
-                          className="group p-3 rounded-xl bg-slate-900/40 hover:bg-slate-900 border border-slate-800/40 hover:border-cyan-500/40 transition-all"
+                    <div className="space-y-1">
+                      {ENTERPRISE_PILLARS.map((pillar, idx) => (
+                        <Link
+                          key={pillar.slug}
+                          href={`/services/${pillar.slug}`}
+                          onClick={() => setActiveDropdown(null)}
+                          className="group flex items-start space-x-4 p-3 rounded-xs hover:bg-slate-50 transition-colors"
                         >
-                          <div className="text-sm font-bold text-slate-200 group-hover:text-cyan-300 flex items-center justify-between">
-                            <span>{ind.name}</span>
-                            <ArrowRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 text-cyan-400 transition-opacity" />
+                          <span className="font-mono text-xs text-slate-400 pt-1 font-semibold">0{idx + 1}</span>
+                          <div className="flex-1">
+                            <div className="text-sm font-serif font-bold text-[#0a1128] group-hover:text-[#1e60b5] transition-colors flex items-center justify-between">
+                              <span>{pillar.category}</span>
+                              <ArrowRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-[#1e60b5]" />
+                            </div>
+                            <p className="text-xs text-slate-600 font-light mt-0.5 line-clamp-1">
+                              {pillar.tagline}
+                            </p>
                           </div>
-                          <p className="text-[11px] text-slate-400 mt-1 line-clamp-1">{ind.desc}</p>
                         </Link>
                       ))}
                     </div>
-                  </motion.div>
+
+                    <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 font-mono">
+                      <span>Fiduciary Standard: 100% Client IP Ownership</span>
+                      <span>Zero Vendor Lock-in</span>
+                    </div>
+                  </div>
+
+                  {/* Right Column: Editorial Featured Card (5 Cols) */}
+                  <div className="col-span-5 flex flex-col justify-between">
+                    <div>
+                      <div className="text-[11px] font-mono uppercase tracking-widest text-slate-500 font-bold pb-3 border-b border-slate-200 mb-4">
+                        Practice Spotlight
+                      </div>
+
+                      <div className="editorial-photo-frame aspect-[16/10] rounded-xs relative overflow-hidden mb-4 border border-slate-200">
+                        <img
+                          src="/practice-ai.jpg"
+                          alt="Autonomous Enterprise AI Control Plane"
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/85 via-transparent to-transparent"></div>
+                        <div className="absolute bottom-3 left-3 right-3 text-white">
+                          <span className="text-[10px] font-mono uppercase text-blue-300 font-bold tracking-widest block mb-1">
+                            COGNITIVE SYSTEMS
+                          </span>
+                          <h4 className="text-sm font-serif font-bold text-white">
+                            Autonomous Enterprise Control Planes
+                          </h4>
+                        </div>
+                      </div>
+
+                      <p className="text-xs text-slate-600 font-light leading-relaxed">
+                        How Fortune 100 enterprise boards deploy deterministic multi-agent architectures for quantifiable balance sheet compounding.
+                      </p>
+                    </div>
+
+                    <div className="pt-4 border-t border-slate-200 flex items-center justify-between">
+                      <Link
+                        href="/contact"
+                        onClick={() => setActiveDropdown(null)}
+                        className="text-xs font-semibold text-[#1e60b5] hover:underline flex items-center"
+                      >
+                        <span>Schedule Partner Briefing</span>
+                        <ArrowRight className="w-3.5 h-3.5 ml-1" />
+                      </Link>
+                      <Link
+                        href="/insights"
+                        onClick={() => setActiveDropdown(null)}
+                        className="text-xs text-slate-500 hover:text-slate-800"
+                      >
+                        Read 2026 Monograph &rarr;
+                      </Link>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* =========================================================================
+            INDUSTRIES DROPDOWN (CLEAN 6-SECTOR PORTFOLIO)
+            ========================================================================= */}
+        <AnimatePresence>
+          {activeDropdown === "industries" && (
+            <motion.div
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 6 }}
+              transition={{ duration: 0.15 }}
+              className="absolute top-full left-0 w-full bg-white border-b border-slate-200 shadow-[0_20px_50px_rgba(0,0,0,0.12)] z-40"
+              onMouseEnter={() => setActiveDropdown("industries")}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
+              <div className="max-w-[1400px] mx-auto px-6 sm:px-8 py-10">
+                
+                <div className="flex items-center justify-between pb-3 border-b border-slate-200 mb-6">
+                  <span className="text-[11px] font-mono uppercase tracking-widest text-slate-500 font-bold">
+                    Regulated Industry Domains
+                  </span>
+                  <Link
+                    href="/industries"
+                    onClick={() => setActiveDropdown(null)}
+                    className="text-xs font-semibold text-[#1e60b5] hover:underline flex items-center"
+                  >
+                    <span>View All Industry Sectors</span>
+                    <ArrowRight className="w-3.5 h-3.5 ml-1" />
+                  </Link>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {GLOBAL_INDUSTRIES.map((ind) => (
+                    <Link
+                      key={ind.slug}
+                      href={`/industries/${ind.slug}`}
+                      onClick={() => setActiveDropdown(null)}
+                      className="group p-3.5 rounded-xs border border-slate-200 hover:border-slate-300 hover:bg-slate-50/70 transition-all flex items-start space-x-3.5"
+                    >
+                      <div className="w-14 h-14 rounded-xs overflow-hidden flex-shrink-0 border border-slate-200">
+                        <img
+                          src={ind.image}
+                          alt={ind.name}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
+                        />
+                      </div>
+                      <div className="flex-1">
+                        <div className="text-xs font-serif font-bold text-[#0a1128] group-hover:text-[#1e60b5] transition-colors leading-tight">
+                          {ind.name}
+                        </div>
+                        <div className="text-[10px] font-mono text-[#1e60b5] font-semibold mt-1">
+                          {ind.metric} {ind.metricLabel}
+                        </div>
+                        <p className="text-[11px] text-slate-500 font-light line-clamp-1 mt-0.5">
+                          {ind.desc}
+                        </p>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+
+                <div className="pt-6 mt-6 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500 font-mono">
+                  <span>Trusted counsel to multinational leadership across regulated global markets.</span>
+                  <Link
+                    href="/contact"
+                    onClick={() => setActiveDropdown(null)}
+                    className="text-[#1e60b5] font-semibold hover:underline"
+                  >
+                    Request Industry Specific Briefing &rarr;
+                  </Link>
+                </div>
+
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+      </header>
+
+      {/* =========================================================================
+          MINIMALIST SEARCH MODAL (CMD+K)
+          ========================================================================= */}
+      <AnimatePresence>
+        {searchOpen && (
+          <div className="fixed inset-0 z-50 flex items-start justify-center pt-24 px-4 sm:px-6">
+            
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSearchOpen(false)}
+              className="fixed inset-0 bg-[#0a1128]/50 backdrop-blur-xs"
+            />
+
+            {/* Modal Dialog */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.98, y: -8 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.98, y: -8 }}
+              transition={{ duration: 0.15 }}
+              className="relative w-full max-w-2xl bg-white rounded-xs border border-slate-300 shadow-2xl overflow-hidden z-10"
+            >
+              {/* Top Search Input */}
+              <div className="flex items-center px-4 py-3.5 border-b border-slate-200 bg-slate-50">
+                <Search className="w-4 h-4 text-slate-400 mr-3" />
+                <input
+                  ref={searchInputRef}
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Search practices, sectors, whitepapers, or case studies..."
+                  className="w-full bg-transparent text-sm text-slate-900 placeholder-slate-400 focus:outline-none font-sans"
+                />
+                <button
+                  onClick={() => setSearchOpen(false)}
+                  className="text-xs font-mono text-slate-400 hover:text-slate-700 border border-slate-200 rounded-xs px-2 py-0.5 bg-white ml-2"
+                >
+                  ESC
+                </button>
+              </div>
+
+              {/* Results Container */}
+              <div className="max-h-[50vh] overflow-y-auto p-4 space-y-4">
+                
+                {/* Practices */}
+                {filteredPractices.length > 0 && (
+                  <div>
+                    <div className="text-[10px] font-mono uppercase tracking-widest text-slate-400 font-bold mb-2 px-2">
+                      Practices
+                    </div>
+                    {filteredPractices.map((p) => (
+                      <Link
+                        key={p.slug}
+                        href={`/services/${p.slug}`}
+                        onClick={() => setSearchOpen(false)}
+                        className="flex items-center justify-between p-2 rounded-xs hover:bg-slate-50 text-xs text-slate-900 font-semibold group"
+                      >
+                        <span className="group-hover:text-[#1e60b5]">{p.category}</span>
+                        <span className="text-[10px] font-mono text-slate-400">{p.code} &rarr;</span>
+                      </Link>
+                    ))}
+                  </div>
                 )}
-              </AnimatePresence>
-            </div>
 
-            <Link href="/insights" className="px-4 py-2 text-sm font-semibold text-slate-200 hover:text-white transition-colors rounded-lg hover:bg-slate-900/60">
-              Insights & Research
-            </Link>
+                {/* Industries */}
+                {filteredIndustries.length > 0 && (
+                  <div>
+                    <div className="text-[10px] font-mono uppercase tracking-widest text-slate-400 font-bold mb-2 px-2">
+                      Industries
+                    </div>
+                    {filteredIndustries.map((s) => (
+                      <Link
+                        key={s.slug}
+                        href={`/industries/${s.slug}`}
+                        onClick={() => setSearchOpen(false)}
+                        className="flex items-center justify-between p-2 rounded-xs hover:bg-slate-50 text-xs text-slate-900 font-semibold group"
+                      >
+                        <span className="group-hover:text-[#1e60b5]">{s.name}</span>
+                        <span className="text-[10px] font-mono text-[#1e60b5]">{s.metric} &rarr;</span>
+                      </Link>
+                    ))}
+                  </div>
+                )}
 
-            <Link href="/case-studies" className="px-4 py-2 text-sm font-semibold text-slate-200 hover:text-white transition-colors rounded-lg hover:bg-slate-900/60">
-              Case Studies
-            </Link>
+                {/* Insights */}
+                {filteredInsights.length > 0 && (
+                  <div>
+                    <div className="text-[10px] font-mono uppercase tracking-widest text-slate-400 font-bold mb-2 px-2">
+                      Research & Insights
+                    </div>
+                    {filteredInsights.map((i) => (
+                      <Link
+                        key={i.slug}
+                        href={`/insights/${i.slug}`}
+                        onClick={() => setSearchOpen(false)}
+                        className="flex items-center justify-between p-2 rounded-xs hover:bg-slate-50 text-xs text-slate-900 font-semibold group"
+                      >
+                        <span className="group-hover:text-[#1e60b5]">{i.title}</span>
+                        <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#1e60b5]" />
+                      </Link>
+                    ))}
+                  </div>
+                )}
 
-            <Link href="/about" className="px-4 py-2 text-sm font-semibold text-slate-200 hover:text-white transition-colors rounded-lg hover:bg-slate-900/60">
-              About Firm
-            </Link>
-          </nav>
+                {filteredPractices.length === 0 && filteredIndustries.length === 0 && filteredInsights.length === 0 && (
+                  <div className="text-center py-8 text-xs text-slate-500 font-light">
+                    No results found for &ldquo;{searchQuery}&rdquo;. Try &ldquo;AI&rdquo;, &ldquo;Operations&rdquo;, or &ldquo;Banking&rdquo;.
+                  </div>
+                )}
 
-          {/* Right Action CTA */}
-          <div className="hidden lg:flex items-center space-x-4">
-            <Link 
-              href="/contact" 
-              className="btn-primary-gradient px-6 py-2.5 rounded-full text-sm font-semibold flex items-center"
-            >
-              <span>Schedule Briefing</span>
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Link>
+              </div>
+
+              {/* Modal Footer */}
+              <div className="px-4 py-2.5 bg-slate-50 border-t border-slate-200 flex items-center justify-between text-[11px] font-mono text-slate-500">
+                <span>Improx Integents Advisory Index</span>
+                <Link
+                  href="/contact"
+                  onClick={() => setSearchOpen(false)}
+                  className="text-[#1e60b5] font-semibold hover:underline"
+                >
+                  Schedule Consultation &rarr;
+                </Link>
+              </div>
+
+            </motion.div>
           </div>
+        )}
+      </AnimatePresence>
 
-          {/* Mobile Menu Button */}
-          <div className="lg:hidden">
-            <button 
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg bg-slate-900 text-slate-200 hover:text-white"
-            >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
-
-        </div>
-      </div>
-
-      {/* Mobile Drawer Navigation */}
+      {/* =========================================================================
+          MOBILE SLIDING DRAWER MENU
+          ========================================================================= */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-slate-950 border-b border-slate-800 overflow-hidden"
+            transition={{ duration: 0.2 }}
+            className="fixed top-[60px] left-0 w-full bg-white border-b border-slate-200 shadow-2xl z-40 max-h-[calc(100vh-60px)] overflow-y-auto"
           >
-            <div className="px-4 py-6 space-y-4">
-              <Link 
-                href="/" 
+            <div className="px-6 py-6 space-y-5">
+              
+              <Link
+                href="/"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block text-base font-bold text-white py-2"
+                className="block text-sm font-semibold uppercase tracking-wider py-2 text-slate-900 border-b border-slate-100"
               >
-                Home
+                Overview
               </Link>
-              <div className="border-t border-slate-800 pt-3">
-                <div className="text-xs font-bold text-indigo-400 uppercase tracking-wider mb-2">Capabilities</div>
-                <div className="space-y-2 pl-2">
-                  {ENTERPRISE_PILLARS.map((pillar) => (
-                    <Link 
-                      key={pillar.slug}
-                      href={`/services/${pillar.slug}`}
+
+              {/* Mobile Practices Accordion */}
+              <div className="border-b border-slate-100 pb-2">
+                <button
+                  onClick={() => setMobilePracticesOpen(!mobilePracticesOpen)}
+                  className="w-full flex items-center justify-between text-sm font-semibold uppercase tracking-wider py-2 text-slate-900"
+                >
+                  <span>Practices</span>
+                  <ChevronDown className={`w-4 h-4 transition-transform ${mobilePracticesOpen ? "rotate-180 text-[#1e60b5]" : ""}`} />
+                </button>
+                {mobilePracticesOpen && (
+                  <div className="pl-3 py-2 space-y-2">
+                    {ENTERPRISE_PILLARS.map((p) => (
+                      <Link
+                        key={p.slug}
+                        href={`/services/${p.slug}`}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="block text-xs text-slate-700 py-1 hover:text-[#1e60b5]"
+                      >
+                        {p.category}
+                      </Link>
+                    ))}
+                    <Link
+                      href="/services"
                       onClick={() => setMobileMenuOpen(false)}
-                      className="block text-sm font-semibold text-slate-300 hover:text-white py-1"
+                      className="block text-xs font-semibold text-[#1e60b5] pt-1"
                     >
-                      {pillar.category}
+                      All Practices &rarr;
                     </Link>
-                  ))}
-                </div>
+                  </div>
+                )}
               </div>
-              <div className="border-t border-slate-800 pt-3 space-y-2">
-                <Link href="/industries" onClick={() => setMobileMenuOpen(false)} className="block text-base font-bold text-white py-1">
-                  Industries
-                </Link>
-                <Link href="/insights" onClick={() => setMobileMenuOpen(false)} className="block text-base font-bold text-white py-1">
-                  Insights & Research
-                </Link>
-                <Link href="/case-studies" onClick={() => setMobileMenuOpen(false)} className="block text-base font-bold text-white py-1">
-                  Case Studies
-                </Link>
-                <Link href="/about" onClick={() => setMobileMenuOpen(false)} className="block text-base font-bold text-white py-1">
-                  About Improx Integents
-                </Link>
+
+              {/* Mobile Industries Accordion */}
+              <div className="border-b border-slate-100 pb-2">
+                <button
+                  onClick={() => setMobileIndustriesOpen(!mobileIndustriesOpen)}
+                  className="w-full flex items-center justify-between text-sm font-semibold uppercase tracking-wider py-2 text-slate-900"
+                >
+                  <span>Industries</span>
+                  <ChevronDown className={`w-4 h-4 transition-transform ${mobileIndustriesOpen ? "rotate-180 text-[#1e60b5]" : ""}`} />
+                </button>
+                {mobileIndustriesOpen && (
+                  <div className="pl-3 py-2 space-y-2">
+                    {GLOBAL_INDUSTRIES.map((ind) => (
+                      <Link
+                        key={ind.slug}
+                        href={`/industries/${ind.slug}`}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="block text-xs text-slate-700 py-1 hover:text-[#1e60b5]"
+                      >
+                        {ind.name}
+                      </Link>
+                    ))}
+                    <Link
+                      href="/industries"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="block text-xs font-semibold text-[#1e60b5] pt-1"
+                    >
+                      All Industries &rarr;
+                    </Link>
+                  </div>
+                )}
               </div>
-              <div className="pt-4 border-t border-slate-800">
-                <Link 
+
+              <Link
+                href="/case-studies"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block text-sm font-semibold uppercase tracking-wider py-2 text-slate-900 border-b border-slate-100"
+              >
+                Case Studies
+              </Link>
+
+              <Link
+                href="/insights"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block text-sm font-semibold uppercase tracking-wider py-2 text-slate-900 border-b border-slate-100"
+              >
+                Insights
+              </Link>
+
+              <Link
+                href="/about"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block text-sm font-semibold uppercase tracking-wider py-2 text-slate-900 border-b border-slate-100"
+              >
+                About
+              </Link>
+
+              <div className="pt-4">
+                <Link
                   href="/contact"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="btn-primary-gradient w-full py-3 rounded-xl font-bold flex items-center justify-center"
+                  className="bg-[#0a1128] text-white w-full py-3 text-xs uppercase tracking-wider text-center block font-semibold rounded-xs"
                 >
-                  Schedule Executive Briefing
+                  Schedule Briefing
                 </Link>
               </div>
+
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 }

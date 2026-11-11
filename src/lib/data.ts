@@ -9,6 +9,12 @@ export interface CapabilityCategory {
   slug: string;
   tagline: string;
   iconName: string;
+  code?: string;
+  image?: string;
+  stat?: string;
+  statLabel?: string;
+  leadName?: string;
+  leadRole?: string;
   items: SubServiceItem[];
 }
 
@@ -18,6 +24,12 @@ export const ENTERPRISE_PILLARS: CapabilityCategory[] = [
     slug: "strategy-consulting",
     tagline: "Architecting resilient business models & growth engines for global market dominance.",
     iconName: "Compass",
+    code: "CAP-01",
+    image: "/practice-strategy.jpg",
+    stat: "$5.8B+",
+    statLabel: "Capital Value Unlocked",
+    leadName: "Elena Rostova",
+    leadRole: "Global Managing Partner",
     items: [
       { title: "Corporate Strategy & Vision", slug: "corporate-strategy", shortDesc: "Long-term positioning & market expansion blueprints." },
       { title: "M&A & Enterprise Restructuring", slug: "mergers-acquisitions", shortDesc: "Post-merger integration & portfolio optimization." },
@@ -32,6 +44,12 @@ export const ENTERPRISE_PILLARS: CapabilityCategory[] = [
     slug: "data-and-ai",
     tagline: "Industrializing agentic AI, predictive analytics & enterprise data platforms.",
     iconName: "BrainCircuit",
+    code: "CAP-02",
+    image: "/practice-ai.jpg",
+    stat: "500+",
+    statLabel: "Production AI Deployments",
+    leadName: "Dr. Marcus Vance",
+    leadRole: "Global Practice Head, AI",
     items: [
       { title: "Enterprise AI & GenAI Consulting", slug: "artificial-intelligence", shortDesc: "Scaling generative & agentic AI models across core workflows." },
       { title: "Modern Data Architecture", slug: "data-architecture", shortDesc: "Data mesh, lakehouses & real-time streaming infrastructure." },
@@ -46,6 +64,12 @@ export const ENTERPRISE_PILLARS: CapabilityCategory[] = [
     slug: "operations",
     tagline: "Re-engineering core supply chains, procurement & customer service hubs.",
     iconName: "Cpu",
+    code: "CAP-03",
+    image: "/practice-operations.jpg",
+    stat: "38%",
+    statLabel: "Average Margin Expansion",
+    leadName: "Arthur Sterling",
+    leadRole: "Senior Partner, Operations",
     items: [
       { title: "Intelligent Supply Chain", slug: "supply-chain", shortDesc: "Autonomous demand forecasting & resilient global logistics." },
       { title: "Procurement & Sourcing Modernization", slug: "procurement", shortDesc: "Cognitive spend management & vendor ecosystem optimization." },
@@ -59,6 +83,12 @@ export const ENTERPRISE_PILLARS: CapabilityCategory[] = [
     slug: "digital-transformation",
     tagline: "Accelerating legacy migration, hybrid cloud & cyber-resilient engineering.",
     iconName: "Layers",
+    code: "CAP-04",
+    image: "/practice-cloud.jpg",
+    stat: "4.2x",
+    statLabel: "Deployment Velocity Boost",
+    leadName: "Claire Zhang",
+    leadRole: "Partner, Cloud & Security",
     items: [
       { title: "Hybrid Cloud & Tech Strategy", slug: "cloud-strategy", shortDesc: "Multi-cloud architecture & IT cost optimization." },
       { title: "Enterprise Architecture Modernization", slug: "enterprise-architecture", shortDesc: "Decoupling monoliths into microservices & event-driven APIs." },
@@ -73,6 +103,12 @@ export const ENTERPRISE_PILLARS: CapabilityCategory[] = [
     slug: "industry-x",
     tagline: "Transforming physical asset ecosystems with Industry 4.0 & digital twins.",
     iconName: "Building2",
+    code: "CAP-05",
+    image: "/practice-industry.jpg",
+    stat: "42%",
+    statLabel: "Unplanned Downtime Cut",
+    leadName: "Henrik Lindqvist",
+    leadRole: "Partner, Industrial IoT",
     items: [
       { title: "Smart Manufacturing & Industry 4.0", slug: "smart-manufacturing", shortDesc: "Connected factory floors & automated robotics integration." },
       { title: "Digital Twin Systems", slug: "digital-twin", shortDesc: "Virtual simulation models for heavy machinery & plants." },
@@ -88,6 +124,8 @@ export const GLOBAL_INDUSTRIES = [
     name: "Financial Services & Banking",
     slug: "financial-services",
     iconName: "Landmark",
+    code: "IND-01",
+    image: "/sector-banking.jpg",
     desc: "AI fraud detection, core banking modernization & algorithmic risk management.",
     metric: "$4.2B+",
     metricLabel: "Capital Value Optimized"
@@ -96,6 +134,8 @@ export const GLOBAL_INDUSTRIES = [
     name: "Healthcare & Life Sciences",
     slug: "healthcare",
     iconName: "Activity",
+    code: "IND-02",
+    image: "/sector-healthcare.jpg",
     desc: "Clinical trial intelligence, genomic data platforms & hospital operational agility.",
     metric: "3.5x",
     metricLabel: "R&D Cycle Acceleration"
@@ -104,6 +144,8 @@ export const GLOBAL_INDUSTRIES = [
     name: "Smart Manufacturing & Automotive",
     slug: "manufacturing",
     iconName: "Factory",
+    code: "IND-03",
+    image: "/sector-manufacturing.jpg",
     desc: "Industry 4.0 automated plants, EV supply chains & predictive quality control.",
     metric: "42%",
     metricLabel: "Downtime Reduction"
@@ -112,6 +154,8 @@ export const GLOBAL_INDUSTRIES = [
     name: "Retail, Consumer & E-Commerce",
     slug: "retail",
     iconName: "ShoppingBag",
+    code: "IND-04",
+    image: "/sector-retail.jpg",
     desc: "Hyper-personalized recommendation engines, dynamic pricing & omni-channel logistics.",
     metric: "28%",
     metricLabel: "Margin Improvement"
@@ -120,6 +164,8 @@ export const GLOBAL_INDUSTRIES = [
     name: "Energy, Resources & Utilities",
     slug: "energy",
     iconName: "Zap",
+    code: "IND-05",
+    image: "/sector-energy.jpg",
     desc: "Grid modernization, renewable asset balancing & carbon accounting software.",
     metric: "12M Tons",
     metricLabel: "CO2 Offset Strategy"
@@ -128,6 +174,8 @@ export const GLOBAL_INDUSTRIES = [
     name: "Telecom & High Tech",
     slug: "telecom",
     iconName: "Radio",
+    code: "IND-06",
+    image: "/sector-telecom.jpg",
     desc: "5G network slicing automation, cloud-native OSS/BSS & AI customer care.",
     metric: "99.999%",
     metricLabel: "Uptime SLA Achieved"
@@ -181,7 +229,7 @@ export const FEATURED_INSIGHTS = [
     title: "The Agentic AI Horizon: How Fortune 500 Leaders Orchestrate Multi-Agent Systems in Production",
     summary: "Moving beyond passive LLM chat interfaces into autonomous operational agents. Discover the reference architecture for enterprise control planes, security rails, and ROI benchmarks.",
     author: "Dr. Marcus Vance, Global Head of AI Practice",
-    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop",
+    image: "/practice-ai.jpg",
     fullContent: `In the early wave of enterprise artificial intelligence adoption, organizations primarily experimented with isolated large language model (LLM) interfaces for basic document summarization and customer support automation. However, as we move through 2026, forward-thinking C-suite executives recognize that conversational interfaces represent only a fraction of AI's ultimate economic potential. The real transformation lies in Agentic AI Control Planes—systems composed of autonomous, specialized software agents capable of executing complex, multi-step business workflows with minimal human oversight.
 
 Traditional automated workflows relied on rigid, rule-based robotic process automation (RPA) scripts that broke whenever underlying user interfaces or data schemas shifted. Multi-agent systems, by contrast, utilize cognitive reasoning, dynamic tool selection, and semantic memory networks. An agentic workflow in procurement, for instance, can independently monitor global commodity prices, audit supplier ESG compliance records, negotiate spot contracts within pre-approved financial boundaries, and update legacy ERP ledgers in real time.
@@ -202,7 +250,7 @@ Organizations that implement this three-layer control plane achieve up to a 45% 
     title: "Dynamic Capital Allocation in Volatile Markets: The CFO Guide to Real-Option Strategy",
     summary: "Why traditional annual budget cycles fail in high-disruption environments. How leading CFOs deploy scenario modeling and algorithmic capital deployment to outpace peers.",
     author: "Elena Rostova, Managing Partner, Strategy",
-    image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1200&auto=format&fit=crop",
+    image: "/practice-strategy.jpg",
     fullContent: `The traditional corporate budgeting model—where executive committees commit fixed capital to twelve-month operational plans—is fundamentally broken. In an era marked by rapid technological inflection, geopolitical supply chain shifts, and volatile interest rate environments, rigid annual capital allocation penalizes agile innovation while funding legacy programs long after their strategic relevance has expired.
 
 Leading Chief Financial Officers (CFOs) are abandoning static budgeting in favor of Dynamic Capital Allocation frameworks based on real-options theory. Instead of allocating massive upfront capital blocks to multi-year initiatives, real-option strategy treats capital deployment as a series of staged financial options. Funding is unlocked dynamically based on empirical market validation, pilot throughput metrics, and risk-adjusted milestone completion.
@@ -223,7 +271,7 @@ CFOs who adopt dynamic capital allocation consistently achieve 2.8x higher total
     title: "Decoupling Global Supply Chains: Building Near-Autonomous Supply Networks",
     summary: "Geopolitical re-alignment and climate volatility require a shift from just-in-time to near-instant resilient manufacturing hubs powered by predictive digital twins.",
     author: "Arthur Sterling, Partner, Supply Chain",
-    image: "https://images.unsplash.com/photo-1586528116311-ad8ed7e66364?q=80&w=1200&auto=format&fit=crop",
+    image: "/practice-operations.jpg",
     fullContent: `For three decades, global supply chain management prioritized a single metric: cost minimization through hyper-lean, just-in-time (JIT) manufacturing and highly centralized offshore sourcing. Today, that paradigm has collided with geopolitical friction, trade realignments, and increasing climate volatility. The legacy vulnerability of single-source global supply networks has forced executive leadership to shift from pure cost-efficiency to structural resilience.
 
 The future of enterprise manufacturing belongs to Near-Autonomous Supply Networks—decentralized, multi-node supply ecosystems powered by predictive digital twins, automated demand sensing, and localized smart manufacturing plants.
@@ -247,7 +295,7 @@ export const FEATURED_CASE_STUDIES = [
     impact: "$240M Annual Savings | 4x Faster Credit Approvals",
     summary: "Improx Integents designed and built an enterprise-grade agentic workflow platform integrating legacy core banking systems with custom LLMs, cutting loan processing from 4 days to 45 minutes while maintaining strict SEC/FINRA compliance.",
     tags: ["Agentic AI", "Core Modernization", "Risk Governance"],
-    image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?q=80&w=1200&auto=format&fit=crop"
+    image: "/sector-banking.jpg"
   },
   {
     slug: "smart-factory-digital-twin",
@@ -257,7 +305,7 @@ export const FEATURED_CASE_STUDIES = [
     impact: "38% Reduction in Unplanned Downtime | $180M Cost Avoidance",
     summary: "Implemented real-time IoT edge telemetry and 3D simulation twins, enabling predictive maintenance algorithms to catch assembly robot defects prior to line failure.",
     tags: ["Digital Twin", "IoT Edge", "Predictive Analytics"],
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1200&auto=format&fit=crop"
+    image: "/sector-manufacturing.jpg"
   },
   {
     slug: "cpe-supply-chain-reengineering",
@@ -267,7 +315,7 @@ export const FEATURED_CASE_STUDIES = [
     impact: "$320M Working Capital Freed | 99.4% On-Time Fulfillment",
     summary: "Overhauled global procurement and distribution nodes with autonomous demand forecasting models, cutting inventory holding costs across 62 distribution centers.",
     tags: ["Supply Chain", "Cognitive Procurement", "Cost Reduction"],
-    image: "https://images.unsplash.com/photo-1586528116311-ad8ed7e66364?q=80&w=1200&auto=format&fit=crop"
+    image: "/sector-retail.jpg"
   }
 ];
 
@@ -278,7 +326,7 @@ export const generateSubServiceData = (subTitle: string, pillarName: string) => 
     pillar: pillarName,
     heroTagline: `Empowering Global Enterprises with Next-Generation ${subTitle} Solutions`,
     description: `We partner with C-suite executives and business leaders to architect, engineer, and deploy industry-leading ${subTitle} initiatives that unlock quantifiable business value, streamline operations, and drive sustainable growth.`,
-    heroImage: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2000&auto=format&fit=crop",
+    heroImage: "/hero-boardroom.jpg",
     
     keyStats: [
       { value: "40%", label: "Average Efficiency Gain" },
@@ -291,7 +339,7 @@ export const generateSubServiceData = (subTitle: string, pillarName: string) => 
       headline: `Re-engineering ${subTitle} for the Modern Digital Enterprise`,
       challenge: `Legacy operating approaches to ${subTitle} often suffer from fragmented data silos, organizational inertia, lack of scalability, and security risks. In today's hyper-competitive global landscape, enterprise leaders cannot afford slow execution or unproven methodologies.`,
       solution: `Improx Integents brings a multidisciplinary team of senior management strategists, systems architects, data scientists, and domain specialists. We combine deep strategic advisory with hands-on technical execution to implement robust ${subTitle} control planes tailored to your exact business model.`,
-      videoImage: "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=1600&auto=format&fit=crop"
+      videoImage: "/practice-strategy.jpg"
     },
 
     // Expanded 3 Key Achievements / Proven Track Record
@@ -353,19 +401,19 @@ export const generateSubServiceData = (subTitle: string, pillarName: string) => 
         industry: "Banking & Financial Services",
         headline: `${subTitle} for Global Banking & Capital Markets`,
         desc: `Transform risk management, customer engagement, and regulatory reporting with automated, resilient ${subTitle} frameworks.`,
-        image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?q=80&w=1200&auto=format&fit=crop"
+        image: "/sector-banking.jpg"
       },
       {
         industry: "Healthcare & Life Sciences",
         headline: `${subTitle} for BioPharma & Healthcare Providers`,
         desc: `Accelerate R&D pipelines, optimize clinical operations, and guarantee HIPAA/GDPR data integrity.`,
-        image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=1200&auto=format&fit=crop"
+        image: "/sector-healthcare.jpg"
       },
       {
         industry: "Manufacturing & Industrial",
         headline: `${subTitle} for Smart Factories & Logistics`,
         desc: "Unify shop-floor telemetry, supply chain forecasting, and equipment maintenance into a single operational interface.",
-        image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1200&auto=format&fit=crop"
+        image: "/sector-manufacturing.jpg"
       }
     ],
 
