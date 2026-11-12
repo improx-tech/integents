@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import LatestInsightsSection from "@/components/LatestInsightsSection";
 import { ArrowRight, Mail, MapPin, Phone, ShieldCheck, CheckCircle2, Globe, Lock } from "lucide-react";
 
 export default function ContactPage() {
@@ -233,6 +234,14 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+
+      {/* Latest Insights Section */}
+      <LatestInsightsSection 
+        title="Executive Insights & Practice Briefings"
+        subtitle="Review our recent monographs and regulatory frameworks before scheduling your confidential partner consultation."
+        badge="Strategic Intelligence • The Integents Review"
+        limit={3}
+      />
 
     </div>
   );

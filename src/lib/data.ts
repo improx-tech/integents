@@ -219,17 +219,25 @@ export const IMPROX_DELIVERY_ENGINE = [
   }
 ];
 
-// 3 Full 350-450 Word Research Articles
+// 8 Full Executive Research Articles & Blog Posts
 export const FEATURED_INSIGHTS = [
   {
     slug: "enterprise-agentic-ai-blueprint-2026",
-    category: "AI & Technology Report",
-    date: "August 2026",
-    readTime: "8 min read (420 Words)",
+    category: "Sovereign AI & Architecture",
+    date: "November 2026",
+    readTime: "8 min read",
     title: "The Agentic AI Horizon: How Fortune 500 Leaders Orchestrate Multi-Agent Systems in Production",
-    summary: "Moving beyond passive LLM chat interfaces into autonomous operational agents. Discover the reference architecture for enterprise control planes, security rails, and ROI benchmarks.",
-    author: "Dr. Marcus Vance, Global Head of AI Practice",
+    summary: "Moving beyond passive LLM chat interfaces into autonomous operational agents. Discover the reference architecture for enterprise control planes, deterministic security rails, and audited balance-sheet ROI benchmarks.",
+    author: "Dr. Marcus Vance",
+    authorRole: "Global Head of Cognitive Systems Practice",
+    authorAvatar: "/practice-ai.jpg",
     image: "/practice-ai.jpg",
+    tags: ["Agentic AI", "Control Planes", "Enterprise Architecture", "Security Rails"],
+    keyTakeaways: [
+      "Traditional RPA scripts break on schema drift; cognitive multi-agent meshes dynamically reason and adapt.",
+      "A 3-layer control plane (Guardrails, Semantic Memory, Audit Mesh) is essential to prevent rogue tool calls.",
+      "Production deployments report an audited 45% reduction in operational transaction overhead."
+    ],
     fullContent: `In the early wave of enterprise artificial intelligence adoption, organizations primarily experimented with isolated large language model (LLM) interfaces for basic document summarization and customer support automation. However, as we move through 2026, forward-thinking C-suite executives recognize that conversational interfaces represent only a fraction of AI's ultimate economic potential. The real transformation lies in Agentic AI Control Planes—systems composed of autonomous, specialized software agents capable of executing complex, multi-step business workflows with minimal human oversight.
 
 Traditional automated workflows relied on rigid, rule-based robotic process automation (RPA) scripts that broke whenever underlying user interfaces or data schemas shifted. Multi-agent systems, by contrast, utilize cognitive reasoning, dynamic tool selection, and semantic memory networks. An agentic workflow in procurement, for instance, can independently monitor global commodity prices, audit supplier ESG compliance records, negotiate spot contracts within pre-approved financial boundaries, and update legacy ERP ledgers in real time.
@@ -244,13 +252,21 @@ Organizations that implement this three-layer control plane achieve up to a 45% 
   },
   {
     slug: "cfo-capital-allocation-uncertainty",
-    category: "Strategy & Finance Benchmark",
-    date: "July 2026",
-    readTime: "9 min read (390 Words)",
+    category: "Corporate Strategy & Finance",
+    date: "October 2026",
+    readTime: "9 min read",
     title: "Dynamic Capital Allocation in Volatile Markets: The CFO Guide to Real-Option Strategy",
-    summary: "Why traditional annual budget cycles fail in high-disruption environments. How leading CFOs deploy scenario modeling and algorithmic capital deployment to outpace peers.",
-    author: "Elena Rostova, Managing Partner, Strategy",
+    summary: "Why traditional annual budget cycles fail in high-disruption environments. How leading CFOs deploy continuous scenario modeling and algorithmic capital deployment to outpace peers.",
+    author: "Elena Rostova",
+    authorRole: "Global Managing Partner, Corporate Strategy",
+    authorAvatar: "/hero-boardroom.jpg",
     image: "/practice-strategy.jpg",
+    tags: ["CFO Advisory", "Capital Allocation", "Real Options", "EBITDA Accretion"],
+    keyTakeaways: [
+      "Rigid 12-month budget cycles penalize agile innovation and subsidize legacy obsolescence.",
+      "Real-option capital allocation releases capital dynamically based on empirical stage-gate performance.",
+      "CFOs deploying dynamic models deliver 2.8x higher total shareholder return (TSR) during macro market shocks."
+    ],
     fullContent: `The traditional corporate budgeting model—where executive committees commit fixed capital to twelve-month operational plans—is fundamentally broken. In an era marked by rapid technological inflection, geopolitical supply chain shifts, and volatile interest rate environments, rigid annual capital allocation penalizes agile innovation while funding legacy programs long after their strategic relevance has expired.
 
 Leading Chief Financial Officers (CFOs) are abandoning static budgeting in favor of Dynamic Capital Allocation frameworks based on real-options theory. Instead of allocating massive upfront capital blocks to multi-year initiatives, real-option strategy treats capital deployment as a series of staged financial options. Funding is unlocked dynamically based on empirical market validation, pilot throughput metrics, and risk-adjusted milestone completion.
@@ -258,20 +274,28 @@ Leading Chief Financial Officers (CFOs) are abandoning static budgeting in favor
 At Improx Integents, our Strategy & CFO Advisory practice partners with Global 2000 finance organizations to implement algorithmic capital deployment engines. This framework operates across three core pillars:
 
 1. Continuous Portfolio Re-Balancing: Moving from annual planning to monthly dynamic capital shifts, allowing CFOs to re-allocate up to 20% of operating budgets toward high-performing digital growth initiatives without waiting for fiscal year-end cycles.
-2. Real-Option Valuation Models: Valuing early-stage digital transformation programs not on immediate net present value (NPV), but on the strategic strategic optionality they create for future market expansion.
+2. Real-Option Valuation Models: Valuing early-stage digital transformation programs not on immediate net present value (NPV), but on the strategic optionality they create for future market expansion.
 3. Automated Margin Attribution: Integrating real-time telemetry from cloud platforms and ERP ledgers directly into executive finance dashboards, giving CFOs granular visibility into the exact return on invested capital (ROIC) per business unit.
 
-CFOs who adopt dynamic capital allocation consistently achieve 2.8x higher total shareholder return (TSR) during market disruptions compared to peers bound by traditional budgeting cycles. Flexibility is no longer just an operational advantage; it is the fundamental driver of modern enterprise enterprise value.`
+CFOs who adopt dynamic capital allocation consistently achieve 2.8x higher total shareholder return (TSR) during market disruptions compared to peers bound by traditional budgeting cycles. Flexibility is no longer just an operational advantage; it is the fundamental driver of modern enterprise value.`
   },
   {
     slug: "supply-chain-decoupling-resilience",
-    category: "Operations Whitepaper",
-    date: "July 2026",
-    readTime: "8 min read (410 Words)",
-    title: "Decoupling Global Supply Chains: Building Near-Autonomous Supply Networks",
+    category: "Supply Chain & Operations",
+    date: "October 2026",
+    readTime: "8 min read",
+    title: "Decoupling Global Supply Chains: Building Near-Autonomous Logistics Networks",
     summary: "Geopolitical re-alignment and climate volatility require a shift from just-in-time to near-instant resilient manufacturing hubs powered by predictive digital twins.",
-    author: "Arthur Sterling, Partner, Supply Chain",
+    author: "Arthur Sterling",
+    authorRole: "Senior Partner, Global Operations Practice",
+    authorAvatar: "/practice-operations.jpg",
     image: "/practice-operations.jpg",
+    tags: ["Supply Chain", "Nearshoring", "Digital Twins", "Autonomous Logistics"],
+    keyTakeaways: [
+      "Single-source offshore sourcing models have created catastrophic vulnerability across global conglomerates.",
+      "Predictive digital twins simulate supply bottlenecks 30-60 days before physical supply disruption manifests.",
+      "Decentralized micro-fulfillment reduces inventory carrying costs by 32% with 99.4% on-time fulfillment."
+    ],
     fullContent: `For three decades, global supply chain management prioritized a single metric: cost minimization through hyper-lean, just-in-time (JIT) manufacturing and highly centralized offshore sourcing. Today, that paradigm has collided with geopolitical friction, trade realignments, and increasing climate volatility. The legacy vulnerability of single-source global supply networks has forced executive leadership to shift from pure cost-efficiency to structural resilience.
 
 The future of enterprise manufacturing belongs to Near-Autonomous Supply Networks—decentralized, multi-node supply ecosystems powered by predictive digital twins, automated demand sensing, and localized smart manufacturing plants.
@@ -283,6 +307,152 @@ Improx Integents works with leading industrial, automotive, and consumer goods e
 3. Edge Robotics & Micro-Fulfillment: Deploying automated guided vehicles (AGVs) and smart warehouse robotics linked directly to ERP inventory management systems, cutting order processing times from days to hours.
 
 By transitioning from fragile JIT pipelines to resilient near-autonomous networks, enterprise clients reduce inventory holding costs by up to 32% while increasing on-time, in-full (OTIF) fulfillment rates to 99.4%. In a volatile global economy, supply chain resilience is the ultimate strategic moat.`
+  },
+  {
+    slug: "sovereign-cloud-zero-trust-governance",
+    category: "Cloud & Cybersecurity",
+    date: "September 2026",
+    readTime: "11 min read",
+    title: "Sovereign Cloud & Zero-Trust Governance: Guarding Against Data Egress in Regulated AI",
+    summary: "As global regulators enforce localized data residency, multinational enterprises must migrate from generic multi-tenant SaaS clouds to sovereign, air-gapped private VPC architectures.",
+    author: "Christian Weber",
+    authorRole: "Head of Sovereign Infrastructure & Modernization",
+    authorAvatar: "/practice-cloud.jpg",
+    image: "/practice-cloud.jpg",
+    tags: ["Sovereign Cloud", "Zero-Trust", "Data Residency", "Air-Gapped Systems"],
+    keyTakeaways: [
+      "Public multi-tenant SaaS clouds expose enterprise data to cross-jurisdictional subpoena and egress risks.",
+      "Air-gapped private VPC control planes keep algorithmic training and inference 100% within sovereign perimeters.",
+      "Cryptographic ledger attestations ensure zero unlogged data access across all core databases."
+    ],
+    fullContent: `The era of unconstrained global public cloud computing is coming to an end. Tighter national data residency statutes—from the EU's Sovereign Cloud initiatives and GDPR to strict US federal security mandates—now hold enterprise boards personally accountable for cross-border data leakage and unmonitored vendor model training.
+
+For Global 500 enterprises in banking, defense, and healthcare, deploying agentic AI or high-frequency analytics on public multi-tenant clouds creates unacceptable operational and regulatory exposure. The modern corporate mandate is Sovereign Cloud Architecture.
+
+At Improx Integents, we design and deploy air-gapped, zero-trust cloud infrastructure that delivers the elasticity of hyperscale cloud while guaranteeing absolute institutional sovereignty:
+
+1. Air-Gapped Private VPCs: Deploying dedicated clusters within AWS GovCloud, Azure Confidential Computing, or private bare-metal data centers where zero data egress is physically and mathematically enforced.
+2. Hardware-Rooted Cryptographic Attestation: Utilizing confidential computing enclaves (Intel SGX, AMD SEV) where code and data are encrypted even in system memory during active execution.
+3. Zero-Trust Mesh & Tokenization: Stripping personally identifiable information (PII) before it ever touches analytical engines, with immutable cryptographic ledgers recording every data access transaction.
+
+By migrating mission-critical data assets into sovereign cloud enclaves, enterprise leadership eliminates regulatory fines, secures corporate trade secrets, and retains 100% perpetual ownership of all algorithmic models.`
+  },
+  {
+    slug: "banking-ai-anti-money-laundering-determinism",
+    category: "Financial Services & Banking",
+    date: "September 2026",
+    readTime: "10 min read",
+    title: "Deterministic AML Screening & Basel IV Capital Resilience in Tier-1 Financial Institutions",
+    summary: "How autonomous neural graph networks and deterministic proof rails compress false-positive AML alerts by 98.4% while ensuring full SEC, FINRA, and FinCEN statutory compliance.",
+    author: "Julian Montgomery",
+    authorRole: "Senior Partner, Financial Institutions Practice",
+    authorAvatar: "/sector-banking.jpg",
+    image: "/sector-banking.jpg",
+    tags: ["Banking", "AML/KYC", "Basel IV", "Risk Management"],
+    keyTakeaways: [
+      "Legacy heuristic rules generate up to 95% false-positive AML alerts, burning millions in compliance overhead.",
+      "Neural graph networks analyze transaction topologies in sub-milliseconds to detect synthetic identity fraud.",
+      "Deterministic audit trails generate pre-packaged filings directly formatted for SEC and FinCEN examination."
+    ],
+    fullContent: `Global commercial and investment banks spend billions annually reviewing anti-money laundering (AML) and sanctions alerts, yet traditional heuristic rule engines generate an astonishing 90% to 95% false-positive rate. In a climate where regulatory penalties for AML oversights reach tens of millions and Basel IV increases capital buffer requirements, compliance inefficiency directly degrades Return on Equity (ROE).
+
+Improx Integents partners with Tier-1 banking institutions to deploy Deterministic AML Screening Engines built on temporal neural graph networks and mathematically verified decision boundaries.
+
+Our banking architecture operates across three high-impact vectors:
+
+1. Topological Neural Transaction Graphs: Instead of screening transactions as isolated data points, our models analyze high-dimensional graph relationships spanning beneficial ownership records, shell company registries, and correspondent banking ledgers.
+2. Deterministic Sanctions Proof: Every positive alert is bounded by deterministic mathematical guardrails that ensure no transaction is blocked or cleared without an immutable cryptographic chain of custody.
+3. Real-Time Suspicious Activity Reporting (SAR): Automated synthesis of regulatory filings ready for FinCEN and SEC submission, cutting investigation cycle times from 14 days to under 30 minutes.
+
+Financial institutions implementing our AML control plane have achieved an audited 98.4% reduction in false-positive alerts, saving over $45M in manual review operational expenses while maintaining an unblemished regulatory compliance audit record.`
+  },
+  {
+    slug: "healthcare-clinical-trial-acceleration-multiomics",
+    category: "Healthcare & Life Sciences",
+    date: "August 2026",
+    readTime: "9 min read",
+    title: "Accelerating Clinical Trial Discovery with Zero-Knowledge Genomic Partitioning",
+    summary: "Overcoming FDA 21 CFR Part 11 and HIPAA constraints to analyze multi-omic biological registries and compress oncology trial recruiting timelines by 35%.",
+    author: "Dr. Aris Thorne",
+    authorRole: "Fellow, Healthcare & Life Sciences Practice",
+    authorAvatar: "/sector-healthcare.jpg",
+    image: "/sector-healthcare.jpg",
+    tags: ["Life Sciences", "Genomics", "FDA Compliance", "Clinical Trials"],
+    keyTakeaways: [
+      "Patient data privacy regulations historically locked valuable multi-center genomic registries in isolated silos.",
+      "Zero-knowledge proofs allow pharmaceutical sponsors to query clinical records without raw data exposure.",
+      "Automated dossier assembly shortens FDA clinical trial protocol submission cycles by up to 60%."
+    ],
+    fullContent: `Bringing a novel biopharmaceutical asset through clinical trials today costs upwards of $1.5 billion and takes an average of seven to ten years. The greatest operational bottleneck is trial recruitment: identifying qualified, genetically stratified patient cohorts across distributed hospital networks while strictly adhering to FDA 21 CFR Part 11 and HIPAA privacy laws.
+
+The breakthrough solution is Zero-Knowledge Genomic Partitioning. By deploying decentralized privacy-preserving cryptographic protocols across participating health systems, clinical sponsors can query complex genomic phenotypes without ever moving or exposing raw patient electronic health records (EHR).
+
+Improx Integents has partnered with leading academic medical centers and global pharmaceutical conglomerates to operationalize this architecture:
+
+1. Federated Genomic Enclaves: Analytical models run locally inside hospital security firewalls, returning only cryptographic proofs of eligibility rather than raw clinical data.
+2. Multi-Omic Cohort Stratification: Autonomous matching engines cross-reference patient mutation profiles against clinical trial inclusion criteria in real-time, identifying eligible candidates within minutes of diagnosis.
+3. Automated Regulatory Dossier Assembly: Document synthesis pipelines compile trial observations directly into audit-ready electronic Common Technical Document (eCTD) formats suitable for simultaneous FDA, EMA, and PMDA review.
+
+By eliminating recruitment friction and streamlining protocol documentation, our biopharma clients have compressed Phase II/III trial timelines by up to 35%, bringing life-saving oncology therapies to market years ahead of schedule.`
+  },
+  {
+    slug: "industrial-iot-smart-manufacturing-digital-twins",
+    category: "Smart Manufacturing & Automotive",
+    date: "August 2026",
+    readTime: "8 min read",
+    title: "Industry 4.0 & Deterministic Robotics: Building Self-Healing Automotive Gigafactories",
+    summary: "How leading global automotive OEMs orchestrate multi-arm robotic assembly lines on real-time deterministic RTOS kernels, eliminating 72% of unplanned factory downtime.",
+    author: "Henrik Lindqvist",
+    authorRole: "Partner, Autonomous Manufacturing & Robotics",
+    authorAvatar: "/sector-manufacturing.jpg",
+    image: "/sector-manufacturing.jpg",
+    tags: ["Industry 4.0", "Digital Twins", "Robotics", "Predictive Maintenance"],
+    keyTakeaways: [
+      "Unplanned automotive assembly downtime costs up to $50,000 per minute in halted factory output.",
+      "Sub-millisecond vibration and thermal telemetry predict component mechanical fatigue weeks before failure.",
+      "Digital twin simulation loops dynamically re-route production when robotic cell jams occur."
+    ],
+    fullContent: `In automotive stamping, painting, and robotic assembly plants, unexpected equipment failure is catastrophically expensive. High-volume manufacturing lines operate on razor-thin cycle times, where a single malfunctioning welding robot can halt an entire factory floor, accumulating downtime costs in excess of $50,000 per minute.
+
+Leading industrial conglomerates are shifting from reactive maintenance schedules to Self-Healing Factory Floors powered by high-frequency IoT telemetry, real-time operating system (RTOS) robotics, and predictive digital twins.
+
+Improx Integents engineers industrial control planes that integrate directly with existing SCADA and PLC hardware:
+
+1. Edge-Based Predictive Component Health: High-frequency acoustic, vibration, and thermal sensors stream telemetry into localized edge compute nodes. Deep anomaly detection models identify micro-frictional wear in robotic gearboxes up to 45 days before physical mechanical failure occurs.
+2. Synchronous Digital Twin Simulation: A continuous virtual replica of the factory floor models physical material flows. When a station slows, the digital twin automatically recalculates downstream pacing and adjusts robotic arm cycle speeds to prevent line bottlenecks.
+3. ISO 26262 Functional Safety SIL-3 Compliance: All automated robotic adjustments execute within hard-coded safety bounds certified to SIL-3 functional safety standards, ensuring worker safety and operational determinism.
+
+Automotive OEMs implementing our industrial control plane have eliminated up to 72% of unplanned manufacturing downtime, expanded overall equipment effectiveness (OEE) by 8.4 points, and unlocked tens of millions in annual EBITDA accretion.`
+  },
+  {
+    slug: "boardroom-ai-fiduciary-liability-eu-ai-act",
+    category: "Boardroom Governance & Risk",
+    date: "July 2026",
+    readTime: "12 min read",
+    title: "Boardroom Fiduciary Governance: Personal Director Liability under the EU AI Act & SEC Standards",
+    summary: "A practical guide for Corporate Boards, General Counsel, and Audit Committees to institute defensible algorithmic risk rails and avoid personal liability under expanding AI regulations.",
+    author: "Elena Rostova & Priya Nair",
+    authorRole: "Global Managing Partner & Head of Algorithmic Risk",
+    authorAvatar: "/practice-strategy.jpg",
+    image: "/hero-boardroom.jpg",
+    tags: ["EU AI Act", "SEC Disclosures", "Board Governance", "Fiduciary Duty"],
+    keyTakeaways: [
+      "New global statutes place personal fiduciary responsibility on corporate directors for algorithmic failures.",
+      "Audit committees must establish tamper-evident, independent algorithmic risk verification protocols.",
+      "Probabilistic AI systems require hard-coded human-in-the-loop triggers for high-impact capital decisions."
+    ],
+    fullContent: `For decades, corporate board oversight focused primarily on financial reporting, executive compensation, and enterprise cybersecurity. In 2026, the regulatory perimeter has expanded dramatically: the full enforcement of the EU AI Act, alongside the SEC's expanded algorithmic disclosure mandates, has created direct, personal fiduciary liability for corporate directors and audit committee members.
+
+When an autonomous system makes a flawed credit determination, executes an erroneous securities trade, or discriminates in healthcare allocation, regulatory authorities no longer accept "black-box algorithm" as a legal defense. Boards must demonstrate proactive, documented, and independent technical governance.
+
+Improx Integents advises corporate boards on establishing defensible algorithmic governance frameworks across four institutional pillars:
+
+1. Algorithmic Materiality Audits: Cataloging every automated model and agentic tool deployed across the enterprise to classify their risk tier under EU AI Act High-Risk system definitions.
+2. Independent Verification & Validation (IV&V): Conducting regular red-teaming and deterministic hallucination audits to mathematically verify that operational agents cannot violate legal or statutory constraints.
+3. Cryptographic Governance Ledgers: Ensuring all high-stakes autonomous transactions are logged into immutable, tamper-evident ledgers that can be forensically audited during regulatory examinations.
+4. Board Audit Committee Dashboards: Delivering real-time C-suite telemetry summarizing model drift, fail-safe activations, and compliance adherence without requiring technical engineering expertise.
+
+By establishing an institutional algorithmic governance charter, corporate boards fulfill their duty of care, shield directors from personal statutory liability, and provide stakeholders with unassailable confidence in the enterprise's autonomous future.`
   }
 ];
 

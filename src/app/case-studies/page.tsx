@@ -1,5 +1,6 @@
 import { FEATURED_CASE_STUDIES } from "@/lib/data";
 import Link from "next/link";
+import LatestInsightsSection from "@/components/LatestInsightsSection";
 import { 
   ArrowRight, 
   TrendingUp, 
@@ -284,7 +285,17 @@ export default function CaseStudiesHub() {
       </section>
 
       {/* =========================================================================
-          SECTION 5: STATELY PARTNER CTA
+          SECTION 5: RESEARCH & MONOGRAPHS BEHIND OUR ENGAGEMENTS
+          ========================================================================= */}
+      <LatestInsightsSection 
+        title="Research & Methodology Behind Our Client Transformations" 
+        subtitle="Examine the quantitative models, algorithmic blueprints, and strategic monographs that power our audited enterprise engagements."
+        badge="Engagement Methodologies • The Integents Review"
+        limit={3}
+      />
+
+      {/* =========================================================================
+          SECTION 6: STATELY PARTNER CTA
           ========================================================================= */}
       <section className="py-24 bg-[#0a1128] text-white">
         <div className="max-w-4xl mx-auto px-4 text-center space-y-6">

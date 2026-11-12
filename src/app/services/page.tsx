@@ -1,5 +1,6 @@
 import { ENTERPRISE_PILLARS } from "@/lib/data";
 import Link from "next/link";
+import LatestInsightsSection from "@/components/LatestInsightsSection";
 import { 
   ArrowRight, 
   ChevronRight, 
@@ -709,7 +710,17 @@ export default function ServicesHub() {
       </section>
 
       {/* =========================================================================
-          SECTION 8: CONFIDENTIAL BOARDROOM RETAINER DESK (CTA)
+          SECTION 8: PRACTICE INSIGHTS & MONOGRAPHS
+          ========================================================================= */}
+      <LatestInsightsSection 
+        title="Practice Insights, Whitepapers & Strategic Perspectives" 
+        subtitle="Peer-reviewed research and reference architectures authored by practice leaders across our 5 strategic consulting disciplines."
+        badge="Practice Monograph Series • The Integents Review"
+        limit={3}
+      />
+
+      {/* =========================================================================
+          SECTION 9: CONFIDENTIAL BOARDROOM RETAINER DESK (CTA)
           ========================================================================= */}
       <section className="py-24 bg-[#0a1128] text-white">
         <div className="max-w-4xl mx-auto px-4 text-center space-y-6">

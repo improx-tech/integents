@@ -1,6 +1,7 @@
 import { FEATURED_CASE_STUDIES } from "@/lib/data";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import LatestInsightsSection from "@/components/LatestInsightsSection";
 import { ChevronRight, CheckCircle2, TrendingUp, ArrowRight, ShieldCheck, Lock } from "lucide-react";
 
 interface PageProps {
@@ -166,6 +167,14 @@ export default async function CaseStudyPage({ params }: PageProps) {
           </div>
         </div>
       </section>
+
+      {/* Strategic Research Behind This Engagement */}
+      <LatestInsightsSection 
+        title="Related Executive Insights & Blueprints" 
+        subtitle="Explore the research monographs and reference architectures underlying transformations of this scale."
+        badge="Engagement Research • The Integents Review"
+        limit={3}
+      />
 
     </div>
   );

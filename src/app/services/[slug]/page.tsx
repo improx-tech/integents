@@ -1,6 +1,7 @@
 import { ENTERPRISE_PILLARS, IMPROX_DELIVERY_ENGINE } from "@/lib/data";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import LatestInsightsSection from "@/components/LatestInsightsSection";
 import { 
   ArrowRight, 
   CheckCircle2, 
@@ -319,7 +320,17 @@ export default async function ServicePage({ params }: PageProps) {
       </section>
 
       {/* =========================================================================
-          SECTION 3: STATELY PRACTICE CTA
+          SECTION 3: PRACTICE INSIGHTS & MONOGRAPHS
+          ========================================================================= */}
+      <LatestInsightsSection 
+        title={`Strategic Research & Monographs in ${pillar.category}`}
+        subtitle={`Peer-reviewed analysis, technical blueprints, and boardroom briefs relevant to the ${pillar.category} discipline.`}
+        badge={`${pillar.code} Monograph Portfolio • The Integents Review`}
+        limit={3}
+      />
+
+      {/* =========================================================================
+          SECTION 4: STATELY PRACTICE CTA
           ========================================================================= */}
       <section className="py-24 bg-[#0a1128] text-white">
         <div className="max-w-4xl mx-auto px-4 text-center space-y-6">

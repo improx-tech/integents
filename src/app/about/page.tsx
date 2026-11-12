@@ -1,4 +1,5 @@
 import Link from "next/link";
+import LatestInsightsSection from "@/components/LatestInsightsSection";
 import { 
   ArrowRight, 
   ShieldCheck, 
@@ -472,7 +473,17 @@ export default function AboutPage() {
       </section>
 
       {/* =========================================================================
-          SECTION 7: STATELY PARTNER CTA
+          SECTION 7: INSTITUTIONAL RESEARCH & EDITORIAL MONOGRAPHS
+          ========================================================================= */}
+      <LatestInsightsSection 
+        title="Institutional Research & Managing Partner Monographs" 
+        subtitle="Peer-reviewed insights, historical computing benchmarks, and sovereign AI control plane analyses published by our global practice leaders."
+        badge="The Integents Review • 50-Year Institutional Research"
+        limit={3}
+      />
+
+      {/* =========================================================================
+          SECTION 8: STATELY PARTNER CTA
           ========================================================================= */}
       <section className="py-24 bg-[#0a1128] text-white">
         <div className="max-w-4xl mx-auto px-4 text-center space-y-6">

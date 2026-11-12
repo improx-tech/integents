@@ -4,6 +4,7 @@ import { useState, use } from "react";
 import { SUB_SERVICE_DETAILS, ENTERPRISE_PILLARS } from "@/lib/data";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import LatestInsightsSection from "@/components/LatestInsightsSection";
 import { 
   ArrowRight, 
   ChevronRight, 
@@ -405,7 +406,15 @@ export default function SubServicePage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* SECTION 8: STATELY FINAL CTA */}
+      {/* SECTION 8: RELATED PRACTICE MONOGRAPHS */}
+      <LatestInsightsSection 
+        title={`Related Strategic Insights in ${detail.title}`}
+        subtitle={`Peer-reviewed research and enterprise blueprints relevant to ${detail.title}.`}
+        badge="Capability Research • The Integents Review"
+        limit={3}
+      />
+
+      {/* SECTION 9: STATELY FINAL CTA */}
       <section className="py-24 bg-[#0a1128] text-white">
         <div className="max-w-4xl mx-auto px-4 text-center space-y-6">
           <span className="heritage-badge-blue text-[10px]">Confidential Engagement</span>
