@@ -1,6 +1,7 @@
 import { GLOBAL_INDUSTRIES, ENTERPRISE_PILLARS, IMPROX_DELIVERY_ENGINE } from "@/lib/data";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import LatestInsightsSection from "@/components/LatestInsightsSection";
 import { 
   ArrowRight, 
   ChevronRight, 
@@ -353,7 +354,17 @@ export default async function IndustryPage({ params }: PageProps) {
       </section>
 
       {/* =========================================================================
-          SECTION 3: STATELY SECTOR CTA
+          SECTION 3: SECTOR RESEARCH & MONOGRAPHS
+          ========================================================================= */}
+      <LatestInsightsSection 
+        title={`Strategic Research & Monographs for ${industry.name}`} 
+        subtitle={`Empirical case studies, regulatory briefs, and algorithmic architecture analyses relevant to ${industry.name}.`}
+        badge={`${industry.code} Sector Research • The Integents Review`}
+        limit={3}
+      />
+
+      {/* =========================================================================
+          SECTION 4: STATELY SECTOR CTA
           ========================================================================= */}
       <section className="py-24 bg-[#0a1128] text-white">
         <div className="max-w-4xl mx-auto px-4 text-center space-y-6">

@@ -1,5 +1,6 @@
 import { GLOBAL_INDUSTRIES } from "@/lib/data";
 import Link from "next/link";
+import LatestInsightsSection from "@/components/LatestInsightsSection";
 import { 
   ArrowRight, 
   ChevronRight, 
@@ -524,7 +525,17 @@ export default function IndustriesHub() {
       </section>
 
       {/* =========================================================================
-          SECTION 6: STATELY SECTOR CTA
+          SECTION 6: REGULATED SECTOR RESEARCH & INSIGHTS
+          ========================================================================= */}
+      <LatestInsightsSection 
+        title="Regulated Sector Research, Whitepapers & Perspectives" 
+        subtitle="Empirical domain studies and sovereign control plane architectures designed for heavily regulated global markets."
+        badge="Sector Monograph Series • The Integents Review"
+        limit={3}
+      />
+
+      {/* =========================================================================
+          SECTION 7: STATELY SECTOR CTA
           ========================================================================= */}
       <section className="py-24 bg-[#0a1128] text-white">
         <div className="max-w-4xl mx-auto px-4 text-center space-y-6">

@@ -202,6 +202,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/blog" className="hover:text-white transition-colors">
+                  Executive Blog & Journal
+                </Link>
+              </li>
+              <li>
                 <Link href="/case-studies" className="hover:text-white transition-colors">
                   Audited Case Studies
                 </Link>

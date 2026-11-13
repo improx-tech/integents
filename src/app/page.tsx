@@ -1179,13 +1179,13 @@ export default function Home() {
                 The Integents Review
               </h2>
             </div>
-            <Link href="/insights" className="text-xs font-mono uppercase tracking-wider text-[#1e60b5] font-semibold hover:underline flex items-center">
-              Access Full Monograph Archive <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
+            <Link href="/blog" className="text-xs font-mono uppercase tracking-wider text-[#1e60b5] font-semibold hover:underline flex items-center">
+              Access Full Monograph & Blog Archive <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
             </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {FEATURED_INSIGHTS.map((insight, idx) => (
+            {FEATURED_INSIGHTS.slice(0, 3).map((insight, idx) => (
               <div 
                 key={insight.slug}
                 className="bg-[#fafaf9] rounded-xs overflow-hidden border border-slate-200 flex flex-col justify-between group hover:border-slate-300 transition-colors"

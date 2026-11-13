@@ -188,6 +188,18 @@ export default function Header() {
                 Case Studies
               </Link>
 
+              {/* Blog */}
+              <Link
+                href="/blog"
+                className={`text-[13px] font-semibold tracking-wide uppercase transition-colors py-2 ${
+                  pathname.startsWith("/blog")
+                    ? "text-[#1e60b5]"
+                    : "text-slate-700 hover:text-[#0a1128]"
+                }`}
+              >
+                Blog
+              </Link>
+
               {/* Insights */}
               <Link
                 href="/insights"
@@ -680,6 +692,14 @@ export default function Header() {
                 className="block text-sm font-semibold uppercase tracking-wider py-2 text-slate-900 border-b border-slate-100"
               >
                 Case Studies
+              </Link>
+
+              <Link
+                href="/blog"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block text-sm font-semibold uppercase tracking-wider py-2 text-slate-900 border-b border-slate-100"
+              >
+                Blog
               </Link>
 
               <Link
